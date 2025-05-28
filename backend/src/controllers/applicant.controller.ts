@@ -7,9 +7,15 @@ export const getApplicants = async (_: Request, res: Response) => {
 };
 
 export const createApplicant = async (req: Request, res: Response) => {
-  const applicant = new Applicant(req.body);
-  await applicant.save();
-  res.status(201).json(applicant);
+  try {
+    const applicant = new Applicant(req.body);
+    await applicant.save();
+    res.status(201).json(applicant);
+  } catch (error) {
+    res
+      .status(400)
+      .json({ error: 'Failed to create applicant', details: error });
+  }
 };
 
 export const deleteApplicant = async (req: Request, res: Response) => {
