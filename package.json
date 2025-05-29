@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "@types/cors": "^2.8.18"
-  },
-  "dependencies": {
-    "open": "^10.1.2"
-  }
-}
