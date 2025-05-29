@@ -1,6 +1,6 @@
 import app from './app';
 import { connectDB } from './utils/db';
-import open from 'open';
+//import open from 'open';
 
 connectDB().then(() => {
   app.listen(process.env.PORT || 5000, async () => {
