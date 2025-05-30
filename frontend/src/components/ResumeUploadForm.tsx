@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react'; // 👈 Add useRef to implement reset()
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -8,7 +8,7 @@ import { useApplicantStore } from '../store/applicantStore';
 interface FormInputs {
   name: string;
   email: string;
-  resume?: FileList; // use unknown here
+  resume?: FileList;
 }
 
 // Yup schema for validation
@@ -36,13 +36,14 @@ const ResumeUploadForm: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    reset, // Add reset
   } = useForm<FormInputs>({
     // Cast schema to any here to fix type incompatibility
     resolver: yupResolver(schema as any),
   });
 
   const addApplicant = useApplicantStore((state) => state.addApplicant);
-
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const onSubmit = async (data: FormInputs) => {
     if (!data.resume || data.resume.length === 0) {
       alert('Please upload a resume file.');
@@ -62,6 +63,8 @@ const ResumeUploadForm: React.FC = () => {
 
       addApplicant(response.data.applicant);
       alert('Resume uploaded successfully!');
+      reset(); // 👈 Reset form fields
+      if (fileInputRef.current) fileInputRef.current.value = ''; // 👈 Clear file input
     } catch (err) {
       console.error(err);
       alert('Upload failed. Please try again.');
@@ -115,6 +118,10 @@ const ResumeUploadForm: React.FC = () => {
         </label>
         <input
           {...register('resume')}
+          ref={(e) => {
+            register('resume').ref(e);
+            fileInputRef.current = e; // 👈 Assign to ref
+          }} // Attach ref to input
           id='resume'
           type='file'
           accept='.txt,.pdf'
@@ -130,7 +137,7 @@ const ResumeUploadForm: React.FC = () => {
       <button
         type='submit'
         disabled={isSubmitting}
-        className='w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 transition disabled:opacity-50'
+        className='w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-500 transition disabled:opacity-50'
       >
         {isSubmitting ? 'Uploading...' : 'Upload Resume'}
       </button>
