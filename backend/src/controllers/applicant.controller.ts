@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import { Applicant } from '../models/Applicant.model';
+import pdfParse from 'pdf-parse';
+
 // This type matches the shape Multer adds to Express.Request
 interface MulterRequest extends Request {
   file?: Express.Multer.File;
@@ -9,18 +11,7 @@ export const getApplicants = async (_: Request, res: Response) => {
   res.json(applicants);
 };
 
-/* export const createApplicant = async (req: Request, res: Response) => {
-  try {
-    const applicant = new Applicant(req.body);
-    await applicant.save();
-    res.status(201).json(applicant);
-  } catch (error) {
-    res
-      .status(400)
-      .json({ error: 'Failed to create applicant', details: error });
-  }
-}; */
-
+// CREATE APPLICANT - implementing MULTER for file upload (pdf and txt)
 export const createApplicant = async (
   req: MulterRequest,
   res: Response
@@ -33,25 +24,37 @@ export const createApplicant = async (
       return;
     }
 
-    // Extract text from the file (placeholder – you can enhance this)
-    const resumeText = req.file.buffer.toString('utf-8');
-    console.log({ name, email, resumeText });
+    const { buffer, mimetype } = req.file;
+    let resumeText = '';
+
+    if (mimetype === 'text/plain') {
+      resumeText = buffer.toString('utf-8');
+    } else if (mimetype === 'application/pdf') {
+      const result = await pdfParse(req.file.buffer);
+      // 👇 dynamically import pdf-parse (ESM-safe)
+      /* const pdfParse = (await import('pdf-parse')).default; // ✅ FIXED
+      const result = await pdfParse(buffer); */
+      resumeText = result.text;
+    } else {
+      res.status(400).json({ error: 'Unsupported file format.' });
+      return;
+    }
     const applicant = new Applicant({
       name,
       email,
       resumeText,
     });
+
     const saved = await applicant.save();
-    console.log('Saved to MongoDB:', saved); // ✅ log the saved doc
+    console.log('Saved to MongoDB:', saved);
 
     res.status(201).json({ applicant: saved });
-    /* await applicant.save();
-    res.status(201).json({ applicant }); */
   } catch (error) {
-    console.error('Save error:', error); // 👈 Add this
-    res
-      .status(400)
-      .json({ error: 'Failed to create applicant', details: error });
+    console.error('Save error:', error);
+    res.status(400).json({
+      error: 'Failed to create applicant',
+      details: error instanceof Error ? error.message : error,
+    });
   }
 };
 

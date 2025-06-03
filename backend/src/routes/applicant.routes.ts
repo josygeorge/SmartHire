@@ -12,5 +12,4 @@ router.get('/', getApplicants);
 //router.post('/', createApplicant);
 router.post('/', upload.single('resume'), createApplicant); // 👈 Use multer here
 router.delete('/:id', deleteApplicant);
-
 export default router;

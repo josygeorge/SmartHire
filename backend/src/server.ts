@@ -1,3 +1,6 @@
+import { DOMParser } from 'xmldom';
+(global as any).DOMParser = DOMParser; // <-- Add this at the very top
+
 import app from './app';
 import { connectDB } from './utils/db';
 //import open from 'open';
