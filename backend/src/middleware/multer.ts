@@ -1,6 +1,11 @@
 // backend/middleware/multer.ts
 import multer from 'multer';
 
+/* Multer simplifies file management in Node.js applications by offering 
+an easy-to-use interface for handling file uploads, validations, and storage, 
+which is crucial for building applications that allow users to upload files.
+ */
+
 const storage = multer.memoryStorage(); // or use diskStorage if you prefer saving files
 
 const upload = multer({

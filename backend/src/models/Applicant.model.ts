@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const applicantSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  resumeText: { type: String }, // optional
+  resumeText: { type: String },
   createdAt: { type: Date, default: Date.now },
 });
 
