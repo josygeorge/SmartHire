@@ -14,6 +14,6 @@ app.use(express.json());
 
 app.use('/api/applicants', applicantRoutes);
 app.use('/api/jobs', jobRoutes);
-app.use('/api/screening-result', screeningResultRoutes);
+app.use('/api/screening-results', screeningResultRoutes);
 
 export default app;
