@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const jobSchema = new mongoose.Schema({
-  title: String,
-  description: String,
+  title: { type: String, required: true },
+  description: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 
