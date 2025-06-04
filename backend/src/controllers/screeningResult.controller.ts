@@ -19,7 +19,8 @@ export const createScreeningResult = async (req: Request, res: Response) => {
 
 export const getScreeningResults = async (_: Request, res: Response) => {
   const results = await ScreeningResult.find()
-    .populate('applicantId')
-    .populate('jobId');
+    .populate('applicantId', 'name email')
+    .populate('jobId', 'title description')
+    .sort({ createdAt: -1 });
   res.json(results);
 };
