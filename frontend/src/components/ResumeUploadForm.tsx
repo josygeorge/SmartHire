@@ -74,7 +74,7 @@ const ResumeUploadForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='max-w-md mx-auto p-6 bg-white text-white rounded shadow space-y-4'
+      className='w-full mx-auto p-6 bg-white text-white rounded shadow space-y-4'
     >
       <div>
         <label className='block font-semibold mb-1' htmlFor='name'>
@@ -137,7 +137,7 @@ const ResumeUploadForm: React.FC = () => {
       <button
         type='submit'
         disabled={isSubmitting}
-        className='w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-500 transition disabled:opacity-50'
+        className=' bg-blue-600 text-white p-3 rounded hover:bg-blue-500 transition disabled:opacity-50'
       >
         {isSubmitting ? 'Uploading...' : 'Upload Resume'}
       </button>
