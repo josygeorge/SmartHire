@@ -34,20 +34,6 @@ export default function ApplicantList() {
       .then(setJobs);
   }, []);
 
-  /* const runScreening = async (applicantId: string) => {
-    const jobId = selectedJobs[applicantId];
-    if (!jobId) return alert('Please select a job to compare.');
-
-    const res = await fetch('/api/screening-results/run', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ applicantId, jobId }),
-    });
-
-    const result = await res.json();
-    alert(`Screening complete: ${result.score}% match`);
-  }; */
-
   const runScreening = async (applicantId: string) => {
     const jobId = selectedJobs[applicantId];
     if (!jobId) {

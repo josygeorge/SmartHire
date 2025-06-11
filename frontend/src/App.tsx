@@ -21,8 +21,9 @@ import ResumeUploadForm from './components/ResumeUploadForm';
 import JobUploadForm from './components/JobUploadForm';
 import ResultsViewer from './components/ResultsViewer';
 import ApplicantList from './components/ApplicantList';
+import JobList from './components/List/JobList';
 
-type Tab = 'resume' | 'job' | 'applicants' | 'results';
+type Tab = 'resume' | 'job' | 'applicants' | 'job list' | 'results';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('resume');
@@ -38,22 +39,25 @@ export default function App() {
 
       {/* Tabs Navigation */}
       <nav className='flex justify-center flex-wrap gap-4 px-4 py-4 bg-gray-100 w-full'>
-        {(['resume', 'job', 'applicants', 'results'] as Tab[]).map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-5 py-2 rounded-lg font-medium transition-all duration-200 ${
-              activeTab === tab
-                ? 'bg-gray-700 text-white'
-                : 'bg-white border hover:bg-gray-200'
-            }`}
-          >
-            {tab === 'resume' && 'Resume Upload'}
-            {tab === 'job' && 'Job Upload'}
-            {tab === 'applicants' && 'List of Applicants'}
-            {tab === 'results' && 'View Results'}
-          </button>
-        ))}
+        {(['resume', 'job', 'applicants', 'job list', 'results'] as Tab[]).map(
+          (tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-5 py-2 rounded-lg font-medium transition-all duration-200 ${
+                activeTab === tab
+                  ? 'bg-gray-700 text-white'
+                  : 'bg-white border hover:bg-gray-200'
+              }`}
+            >
+              {tab === 'resume' && 'Resume Upload'}
+              {tab === 'job' && 'Job Upload'}
+              {tab === 'applicants' && 'List of Applicants'}
+              {tab === 'job list' && 'List of Jobs'}
+              {tab === 'results' && 'View Results'}
+            </button>
+          )
+        )}
       </nav>
 
       {/* Main Content */}
@@ -62,6 +66,7 @@ export default function App() {
           {activeTab === 'resume' && <ResumeUploadForm />}
           {activeTab === 'job' && <JobUploadForm />}
           {activeTab === 'applicants' && <ApplicantList />}
+          {activeTab === 'job list' && <JobList />}
           {activeTab === 'results' && <ResultsViewer />}
         </div>
       </main>
