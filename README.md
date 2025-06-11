@@ -48,7 +48,12 @@
   | 📄 Resume Parsing | ✅ Done | Using `pdf-parse` |
   | 💼 Job Creation | ✅ Done | Basic create form works |
   | 🤖 Screening with AI Agent | ✅ Done | Match score + analysis via OpenRouter + Mistral |
-  | 📊 Screening Result | ✅ Done | Storage & Frontend Display Working end-to-end |
+  | 📊 Screening Result | ✅ Done | Storage & Frontend Display - Working end-to-end|
+
+## Comments
+
+> "The project planned sequence strikes a good balance between functionality, performance, and polish."
+> "That’s a solid and well-prioritized plan, especially for a 3-day sprint with 3–4 hours/day."
 
 ## 📸 Screenshots
 
