@@ -21,6 +21,55 @@ export const createScreeningResult = async (req: Request, res: Response) => {
   }
 };
 
+// Delete orphaned screening results where applicantId or jobId is null
+// This is useful for cleaning up results that may have been created
+// before the applicant or job was fully created, or if they were deleted later.
+export const deleteOrphanedScreeningResults = async (
+  _: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    // 1. Get all existing Applicant IDs
+    const existingApplicantIds = (
+      await Applicant.find({}, { _id: 1 }).lean()
+    ).map((doc) => doc._id);
+
+    // 2. Get all existing Job IDs
+    const existingJobIds = (await Job.find({}, { _id: 1 }).lean()).map(
+      (doc) => doc._id
+    );
+
+    // 3. Construct the query to find orphaned ScreeningResults
+    // An orphaned result is one where:
+    // a) its applicantId is NULL
+    // OR b) its applicantId is NOT in the list of existing applicant IDs
+    // OR c) its jobId is NULL
+    // OR d) its jobId is NOT in the list of existing job IDs
+    const deleteQuery = {
+      $or: [
+        { applicantId: { $exists: true, $eq: null } }, // Explicitly check if applicantId is null
+        { applicantId: { $nin: existingApplicantIds } }, // Check if applicantId is not in the list of valid IDs
+        { jobId: { $exists: true, $eq: null } }, // Explicitly check if jobId is null
+        { jobId: { $nin: existingJobIds } }, // Check if jobId is not in the list of valid IDs
+      ],
+    };
+
+    // 4. Execute the deletion
+    const result = await ScreeningResult.deleteMany(deleteQuery);
+
+    res.status(200).json({
+      message: `Deleted ${result.deletedCount} orphaned screening results.`,
+      deletedCount: result.deletedCount,
+    });
+  } catch (error) {
+    console.error('Error deleting orphaned screening results:', error);
+    res
+      .status(500)
+      .json({ error: 'Failed to delete orphaned screening results' });
+  }
+};
+
+// Fetch all screening results with populated applicant and job details
 export const getScreeningResults = async (_: Request, res: Response) => {
   const results = await ScreeningResult.find()
     .populate('applicantId', 'name email')
@@ -154,11 +203,9 @@ Respond as a JSON object.
     res.status(200).json(result);
   } catch (err) {
     console.error('General Server Error in runAIForScreeningResult:', err);
-    res
-      .status(500)
-      .json({
-        error: 'AI screening failed due to an unexpected server error.',
-      });
+    res.status(500).json({
+      error: 'AI screening failed due to an unexpected server error.',
+    });
   }
 };
 
