@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
-import { useApplicantStore } from '../store/applicantStore';
+import { useApplicantStore } from '../store/useApplicantStore';
 
 interface FormInputs {
   name: string;
@@ -87,7 +87,7 @@ const ResumeUploadForm: React.FC = () => {
           className={`w-full border p-2 rounded ${
             errors.name ? 'border-red-500' : 'border-gray-300'
           }`}
-          placeholder='Your full name'
+          placeholder="Applicant's full name"
         />
         {errors.name && (
           <p className='text-red-500 text-sm mt-1'>{errors.name.message}</p>
@@ -105,7 +105,7 @@ const ResumeUploadForm: React.FC = () => {
           className={`w-full border p-2 rounded ${
             errors.email ? 'border-red-500' : 'border-gray-300'
           }`}
-          placeholder='Your email'
+          placeholder="Applicant's email"
         />
         {errors.email && (
           <p className='text-red-500 text-sm mt-1'>{errors.email.message}</p>

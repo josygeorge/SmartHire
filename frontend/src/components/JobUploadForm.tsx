@@ -2,11 +2,14 @@
 // This component lets users submit a job description, title, and skills to your backend (POST /api/jobs)
 import { useState } from 'react';
 import axios from 'axios';
+import useJobStore from '../store/useJobStore';
 
 export default function JobUploadForm() {
   const [form, setForm] = useState({ title: '', description: '', skills: '' });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  // Using Zustand store to manage jobs
+  const addJob = useJobStore((state) => state.addJob);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -18,10 +21,13 @@ export default function JobUploadForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/jobs', {
+      const response = await axios.post('/api/jobs', {
         ...form,
         skills: form.skills.split(',').map((s) => s.trim()),
       });
+      const createdJob = response.data;
+      // Add the new job to the Zustand store
+      addJob(createdJob);
       setMessage('Job uploaded successfully!');
       setForm({ title: '', description: '', skills: '' });
     } catch (err) {
