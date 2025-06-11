@@ -39,6 +39,17 @@
 
 ---
 
+## Current Status in SmartHire (MERN + Agentic AI Resume Screener)
+
+- 🔍 Finished - 80%
+  | Feature / Module | Status | Notes |
+  | --------------------------- | ------- | ----------------------------------------------- |
+  | 🧑‍💼 Applicant Upload | ✅ Done | Resume stored via Multer |
+  | 📄 Resume Parsing | ✅ Done | Using `pdf-parse` |
+  | 💼 Job Creation | ✅ Done | Basic create form works |
+  | 🤖 Screening with AI Agent | ✅ Done | Match score + analysis via OpenRouter + Mistral |
+  | 📊 Screening Result | ✅ Done | Storage & Frontend Display Working end-to-end |
+
 ## 📸 Screenshots
 
 > Add real screenshots here after deployment:

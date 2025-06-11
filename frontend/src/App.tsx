@@ -20,8 +20,9 @@ import { useState } from 'react';
 import ResumeUploadForm from './components/ResumeUploadForm';
 import JobUploadForm from './components/JobUploadForm';
 import ResultsViewer from './components/ResultsViewer';
+import ApplicantList from './components/ApplicantList';
 
-type Tab = 'resume' | 'job' | 'results';
+type Tab = 'resume' | 'job' | 'applicants' | 'results';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('resume');
@@ -37,18 +38,19 @@ export default function App() {
 
       {/* Tabs Navigation */}
       <nav className='flex justify-center flex-wrap gap-4 px-4 py-4 bg-gray-100 w-full'>
-        {(['resume', 'job', 'results'] as Tab[]).map((tab) => (
+        {(['resume', 'job', 'applicants', 'results'] as Tab[]).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`px-5 py-2 rounded-lg font-medium transition-all duration-200 ${
               activeTab === tab
-                ? 'bg-blue-600 text-white'
-                : 'bg-white border hover:bg-blue-100'
+                ? 'bg-gray-700 text-white'
+                : 'bg-white border hover:bg-gray-200'
             }`}
           >
             {tab === 'resume' && 'Resume Upload'}
             {tab === 'job' && 'Job Upload'}
+            {tab === 'applicants' && 'List of Applicants'}
             {tab === 'results' && 'View Results'}
           </button>
         ))}
@@ -59,6 +61,7 @@ export default function App() {
         <div className='max-w-screen-xl w-full mx-auto'>
           {activeTab === 'resume' && <ResumeUploadForm />}
           {activeTab === 'job' && <JobUploadForm />}
+          {activeTab === 'applicants' && <ApplicantList />}
           {activeTab === 'results' && <ResultsViewer />}
         </div>
       </main>
