@@ -16,11 +16,24 @@ interface JobStore {
 }
 export const useJobStore = create<JobStore>((set) => ({
   jobs: [],
-  setJobs: (jobs) => set({ jobs }),
+  /* setJobs: (jobs) => set({ jobs }),
   addJob: (job) =>
     set((state) => ({
       jobs: [job, ...state.jobs], // Unshift to show latest first
+    })), */
+  setJobs: (data: any[]) =>
+    set({
+      jobs: data.map((job) => ({
+        ...job,
+        id: job._id, // Convert Mongo _id to id
+      })),
+    }),
+
+  addJob: (job: any) =>
+    set((state) => ({
+      jobs: [{ ...job, id: job._id }, ...state.jobs],
     })),
+
   updateJob: (id, updatedJob) =>
     set((state) => ({
       jobs: state.jobs.map((job) =>

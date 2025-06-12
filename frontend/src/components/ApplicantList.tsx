@@ -54,7 +54,7 @@ export default function ApplicantList() {
       }
 
       const result = await res.json();
-      alert(`Screening complete: ${result.score}% match`);
+      alert(`Success... Screening complete: ${result.score}% match`);
     } catch (err: any) {
       console.error('Error running screening:', err);
       alert(`Error: ${err.message || 'Something went wrong while screening.'}`);

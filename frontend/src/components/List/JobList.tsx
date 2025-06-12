@@ -30,8 +30,10 @@ export default function JobList() {
     fetchJobs();
   }, [setJobs]);
   console.log(jobs);
+
   const handleEditClick = (job: any) => {
-    setEditingJobId(job._id!);
+    if (!job.id) return; // Ensure job.id is defined
+    setEditingJobId(job.id!);
     setEditForm({
       title: job.title,
       description: job.description,
@@ -46,6 +48,7 @@ export default function JobList() {
   };
 
   const handleUpdate = async (jobId: string) => {
+    if (!jobId) return; // Ensure jobId is defined
     try {
       const updated = {
         title: editForm.title,
@@ -61,6 +64,7 @@ export default function JobList() {
   };
 
   const handleDelete = async (jobId: string) => {
+    if (!jobId) return;
     try {
       await axios.delete(`/api/jobs/${jobId}`);
       deleteJob(jobId);
@@ -78,33 +82,33 @@ export default function JobList() {
         <ul className='space-y-4'>
           {jobs.map((job) => (
             <li
-              key={job._id}
+              key={job.id}
               className='border p-4 rounded-md flex flex-col gap-2'
             >
-              {editingJobId === job._id ? (
+              {editingJobId === job.id ? (
                 <>
                   <input
                     name='title'
                     value={editForm.title}
                     onChange={handleEditChange}
-                    className='border p-2 rounded'
+                    className='border p-2 text-white rounded'
                   />
                   <textarea
                     name='description'
                     value={editForm.description}
                     onChange={handleEditChange}
                     rows={3}
-                    className='border p-2 rounded'
+                    className='border p-2 text-white rounded'
                   />
                   <input
                     name='skills'
                     value={editForm.skills}
                     onChange={handleEditChange}
-                    className='border p-2 rounded'
+                    className='border p-2 text-white rounded'
                   />
                   <div className='flex gap-2'>
                     <button
-                      onClick={() => handleUpdate(job._id!)}
+                      onClick={() => handleUpdate(job.id!)}
                       className='bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700'
                     >
                       Save
@@ -132,7 +136,7 @@ export default function JobList() {
                       Edit
                     </button>
                     <button
-                      onClick={() => handleDelete(job._id!)}
+                      onClick={() => handleDelete(job.id!)}
                       className='bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700'
                     >
                       Delete
