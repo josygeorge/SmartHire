@@ -20,7 +20,7 @@ import { useState } from 'react';
 import ResumeUploadForm from './components/ResumeUploadForm';
 import JobUploadForm from './components/JobUploadForm';
 import ResultsViewer from './components/ResultsViewer';
-import ApplicantList from './components/ApplicantList';
+import ApplicantList from './components/List/ApplicantList';
 import JobList from './components/List/JobList';
 
 type Tab = 'resume' | 'job' | 'applicants' | 'job list' | 'results';
