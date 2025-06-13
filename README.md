@@ -41,18 +41,22 @@
 
 ## Current Status in SmartHire (MERN + Agentic AI Resume Screener)
 
-- 🔍 Finished - 80%
-  | Feature / Module | Status | Notes |
-  | --------------------------- | ------- | ----------------------------------------------- |
-  | 🧑‍💼 Applicant Upload | ✅ Done | Resume stored via Multer |
-  | 📄 Resume Parsing | ✅ Done | Using `pdf-parse` |
-  | 💼 Job Creation | ✅ Done | Basic create form works |
-  | 🤖 Screening with AI Agent | ✅ Done | Match score + analysis via OpenRouter + Mistral |
-  | 📊 Screening Result | ✅ Done | Storage & Frontend Display - Working end-to-end|
+- 🔍 Feature Progress Overview
 
-  # Testing using Jest - React Library
+Finished - 80%
+Feature / Module | Status | Notes
+🧑‍💼 Applicant Upload | ✅ Done | Resume stored via Multer
+📄 Resume Parsing | ✅ Done | Using pdf-parse
+💼 Job Creation | ✅ Done | Basic create form works
+🤖 AI Screening Integration | ✅ Done | Match score + analysis via OpenRouter + Mixtral
+📊 Screening Results Viewer | ✅ Done | ScreeningResults collection + frontend UI completed
+🔬 Unit Testing | ✅ Done | JobList tested with Jest + React Testing Library + Zustand mock
+🧠 Zustand State Management | ✅ Done | Store implemented for jobs + screening results
+🧪 API + Component Testing | ✅ Done | Tested Job CRUD, AI feedback, and empty state rendering
 
-  ✅ Unit Testing: JobList Component
+# Testing using Jest - React Library
+
+✅ Unit Testing: JobList Component
 
 The JobList component is fully covered with unit tests using Jest and React Testing Library, with proper mocking of both Zustand store and Axios for API interactions.
 🧪 Testing Setup Highlights
