@@ -1,7 +1,8 @@
 // components/JobList.tsx
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useJobStore } from '../../store/useJobStore';
 import axios from 'axios';
+import debounce from 'lodash.debounce';
 
 export default function JobList() {
   const jobs = useJobStore((state) => state.jobs);
@@ -15,6 +16,11 @@ export default function JobList() {
     description: '',
     skills: '',
   });
+
+  // Debounce Search filter
+  const [search, setSearch] = useState('');
+  const [filteredJobs, setFilteredJobs] = useState(jobs);
+
   // Fetch jobs from the API and populate Zustand store on component mount
   // - Zustand hydration on mount
   useEffect(() => {
@@ -31,6 +37,28 @@ export default function JobList() {
   }, [setJobs]);
   console.log(jobs);
 
+  // Debounced search handler
+  useEffect(() => {
+    setFilteredJobs(jobs); // Reset when jobs change
+  }, [jobs]);
+
+  // Debounced search (300ms) to filter job titles
+  const debouncedFilter = useMemo(
+    () =>
+      debounce((query: string) => {
+        const lower = query.toLowerCase();
+        setFilteredJobs(
+          jobs.filter((job) => job.title.toLowerCase().includes(lower))
+        );
+      }, 300),
+    [jobs]
+  );
+  useEffect(() => {
+    debouncedFilter(search);
+    return () => debouncedFilter.cancel();
+  }, [search, debouncedFilter]);
+
+  // Handle Job Edit, Update, and Delete
   const handleEditClick = (job: any) => {
     if (!job.id) return; // Ensure job.id is defined
     setEditingJobId(job.id!);
@@ -76,11 +104,20 @@ export default function JobList() {
   return (
     <div className='w-full mx-auto bg-white text-black shadow-lg rounded-2xl p-6 my-6'>
       <h2 className='text-2xl font-semibold mb-4'>Job Listings</h2>
-      {jobs.length === 0 ? (
+
+      {/* Search Input */}
+      <input
+        className='w-full p-2 mb-4 text-white border rounded'
+        type='text'
+        placeholder='🔍 Search job titles...'
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      {filteredJobs.length === 0 ? (
         <p>No jobs available.</p>
       ) : (
         <ul className='space-y-4'>
-          {jobs.map((job) => (
+          {filteredJobs.map((job) => (
             <li
               key={job.id}
               className='border p-4 rounded-md flex flex-col gap-2'
