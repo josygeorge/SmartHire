@@ -50,6 +50,45 @@
   | 🤖 Screening with AI Agent | ✅ Done | Match score + analysis via OpenRouter + Mistral |
   | 📊 Screening Result | ✅ Done | Storage & Frontend Display - Working end-to-end|
 
+  # Testing using Jest - React Library
+
+  ✅ Unit Testing: JobList Component
+
+The JobList component is fully covered with unit tests using Jest and React Testing Library, with proper mocking of both Zustand store and Axios for API interactions.
+🧪 Testing Setup Highlights
+
+    ✅ Zustand store (useJobStore) successfully mocked
+
+    ✅ Axios HTTP requests stubbed using Jest
+
+    ✅ tsconfig configured with:
+
+        jsx: react-jsx
+
+        esModuleInterop: true (to avoid import issues)
+
+    ✅ Jest environment set up with jest-environment-jsdom for DOM simulation
+
+🔍 Test Cases Covered
+
+    ✅ Renders "No jobs available" when store is empty
+
+    ✅ Renders job listings correctly with mock data
+
+    ✅ Edits a job and updates state on "Save"
+
+    ✅ Cancels edit mode and reverts UI changes
+
+    ✅ Deletes a job and confirms store update
+
+# 🧪 How to Run Tests
+
+npm run test
+
+# or watch mode
+
+npm run test:watch
+
 ## Comments
 
 > "The project planned sequence strikes a good balance between functionality, performance, and polish."

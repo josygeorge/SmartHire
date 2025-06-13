@@ -1,4 +1,13 @@
 {
+  "compilerOptions": {
+    "jsx": "react-jsx", // ✅ Required so Jest sees it
+    "esModuleInterop": true, // ✅ Required by ts-jest
+    "module": "esnext",
+    "target": "es2020",
+    "moduleResolution": "node",
+    "strict": true,
+    "skipLibCheck": true
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
