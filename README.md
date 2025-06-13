@@ -14,15 +14,14 @@
 
 ## 🛠️ Tech Stack
 
-| Layer       | Tech Stack                             |
-| ----------- | -------------------------------------- |
-| Frontend    | React, TypeScript, Zustand, Vite       |
-| Backend     | Node.js, Express, TypeScript           |
-| Database    | MongoDB Atlas                          |
-| AI Agent    | OpenAI GPT-4 via LangChain / LangGraph |
-| File Upload | Multer                                 |
-| Deployment  | Vercel (frontend), Render (backend)    |
-| Testing     | Jest, React Testing Library, Postman   |
+| Layer | Tech Stack
+|🖥️ Frontend | React, TypeScript, Zustand, Vite
+|🔙 Backend | Node.js, Express, TypeScript
+|🗃️ Database | MongoDB Atlas
+|🤖 AI Agent | OpenRouter with Model: 'mistralai/devstral-small:free'
+|📎 File Upload | Multer
+|☁️ Deployment | Vercel (frontend), Render (backend)
+|🧪 Testing | Jest, React Testing Library, Postman
 
 ---
 
