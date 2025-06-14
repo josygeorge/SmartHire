@@ -20,10 +20,10 @@ export default function ResultsViewer() {
   const [results, setResults] = useState<ScreeningResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // === Pagination Constants & State ===
   const RESULTS_PER_PAGE = 2; // Number of results to show per page
-  const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(results.length / RESULTS_PER_PAGE);
   const paginatedResults = results.slice(
