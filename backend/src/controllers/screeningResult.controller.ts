@@ -105,17 +105,25 @@ export const runAIForScreeningResult = async (
 
     // This is your actual prompt for AI screening
     const screeningPrompt = `
-Given this resume:\n${applicant.resumeText}
+Given the following RESUME and JOB DESCRIPTION:
 
-And this job description:\n${job.description}
+--- RESUME ---
+${applicant.resumeText}
 
-Provide:
-- A match score (0-100)
-- A one-paragraph summary
-- 3 strengths
-- 3 weaknesses
-- 3 interview questions
-Respond as a JSON object.
+--- JOB DESCRIPTION ---
+${job.description}
+
+Return the result as a JSON object with this structure:
+
+{
+  "score": number (0 to 100),
+  "summary": string,
+  "strengths": [string, string, string],
+  "weaknesses": [string, string, string],
+  "interviewQuestions": [string, string, string]
+}
+
+Ensure the response is valid JSON and matches the structure exactly.
 `;
 
     // Ensure your API key is available
@@ -159,6 +167,11 @@ Respond as a JSON object.
         console.error('OpenRouter returned no content.');
         return res.status(500).json({ error: 'AI did not return content.' });
       }
+      // Remove any markdown/code block formatting (like ```json ... ```)
+      aiContent = aiContent
+        .trim()
+        .replace(/^```json\n?/, '')
+        .replace(/```$/, '');
     } catch (openRouterError: any) {
       console.error(
         'OpenRouter API Call Error:',
@@ -176,6 +189,16 @@ Respond as a JSON object.
     let parsedAIResponse: any;
     try {
       parsedAIResponse = JSON.parse(aiContent);
+      // Validate the structure of the parsed response
+      if (
+        typeof parsedAIResponse.score !== 'number' ||
+        typeof parsedAIResponse.summary !== 'string' ||
+        !Array.isArray(parsedAIResponse.strengths) ||
+        !Array.isArray(parsedAIResponse.weaknesses) ||
+        !Array.isArray(parsedAIResponse.interviewQuestions)
+      ) {
+        throw new Error('Incomplete or malformed AI response fields');
+      }
     } catch (parseError) {
       console.error(
         'Failed to parse AI content as JSON:',

@@ -21,6 +21,16 @@ export default function ResultsViewer() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // === Pagination Constants & State ===
+  const RESULTS_PER_PAGE = 2; // Number of results to show per page
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(results.length / RESULTS_PER_PAGE);
+  const paginatedResults = results.slice(
+    (currentPage - 1) * RESULTS_PER_PAGE,
+    currentPage * RESULTS_PER_PAGE
+  );
+
   useEffect(() => {
     const fetchResults = async () => {
       try {
@@ -93,36 +103,72 @@ export default function ResultsViewer() {
       </p>
     );
   }
+
+  // === Render Results ===
   return (
     <div className='w-full mx-auto my-6 space-y-6'>
       <h2 className='text-3xl font-semibold text-center mb-4'>
         AI Screening Results
       </h2>
-      {results.map((res) => (
-        <div key={res._id} className='bg-gray-100 p-5 rounded-2xl shadow-md'>
-          {/* SAFEGUARDS ADDED HERE - Optional Chaining (?.) and Nullish Coalescing (||)*/}
-          <h3 className='text-xl font-bold'>
-            {res.applicantId?.name || 'Unknown Applicant'} (
-            {res.applicantId?.email || 'N/A'})
-          </h3>
-          <p className='text-sm text-gray-600'>
-            Matched for: <strong>{res.jobId?.title || 'Unknown Job'}</strong>
-          </p>
-          <p className='mt-2 text-gray-800'>
-            <strong>Summary:</strong> {res.summary}
-          </p>
-          <p>
-            <strong>Score:</strong> {res.score}
-          </p>
-          <p>
-            <strong>Strengths:</strong> {res.strengths.join(', ')}
-          </p>
-          <p>
-            <strong>Weaknesses:</strong> {res.weaknesses.join(', ')}
-          </p>
-          <div className='mt-2'>
-            <strong>Suggested Interview Questions:</strong>
-            <ul className='list-disc list-inside'>
+      {paginatedResults.map((res) => (
+        <div
+          key={res._id}
+          className='bg-white border rounded-2xl p-6 shadow-md space-y-4'
+        >
+          <div className='flex flex-col md:flex-row justify-between md:items-center'>
+            <div>
+              {/* SAFEGUARDS ADDED HERE - Optional Chaining (?.) and Nullish Coalescing (||)*/}
+              <h3 className='text-xl font-bold'>
+                {res.applicantId?.name || 'Unknown Applicant'}{' '}
+                <span className='text-sm text-gray-500'>
+                  ({res.applicantId?.email || 'N/A'})
+                </span>
+              </h3>
+              <p className='text-sm text-gray-700 mt-1'>
+                Matched for:{' '}
+                <span className='font-medium'>
+                  {res.jobId?.title || 'Unknown Job'}
+                </span>
+              </p>
+            </div>
+            <div className='mt-2 md:mt-0'>
+              <p className='text-sm text-gray-600'>Match Score</p>
+              <p className='text-2xl font-bold text-green-600'>{res.score}%</p>
+            </div>
+          </div>
+
+          <div>
+            <p className='font-semibold text-gray-800 mb-1'>Summary</p>
+            <p className='text-sm text-gray-700 bg-gray-50 p-3 rounded-md border'>
+              {res.summary}
+            </p>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+            <div>
+              <p className='font-semibold text-green-700'>Strengths</p>
+              <ul className='list-disc list-inside text-sm text-green-800'>
+                {res.strengths.map((s, i) => (
+                  <li key={i}>{s}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p className='font-semibold text-red-700'>Weaknesses</p>
+              <ul className='list-disc list-inside text-sm text-red-800'>
+                {res.weaknesses.map((w, i) => (
+                  <li key={i}>{w}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <p className='font-semibold text-gray-800'>
+              Suggested Interview Questions
+            </p>
+            <ul className='list-decimal list-inside text-sm text-gray-700 space-y-1'>
               {res.interviewQuestions.map((q, i) => (
                 <li key={i}>{q}</li>
               ))}
@@ -130,6 +176,30 @@ export default function ResultsViewer() {
           </div>
         </div>
       ))}
+      {/* === Pagination Controls === */}
+      {totalPages > 1 && (
+        <div className='flex justify-center items-center gap-4 mt-6'>
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className='px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 disabled:opacity-50'
+          >
+            Previous
+          </button>
+          <span className='text-sm font-medium text-gray-700'>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className='px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 disabled:opacity-50'
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }
