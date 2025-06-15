@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
     "build": "tsc",
     "postinstall": "sed -i '' '/module.exports = PDF/,$!d' node_modules/pdf-parse/index.js"
   },
@@ -27,7 +28,6 @@
     "xmldom": "^0.6.0"
   },
   "devDependencies": {
-    "@types/bcryptjs": "^3.0.0",
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.9",
