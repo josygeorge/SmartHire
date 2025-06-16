@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import applicantRoutes from './routes/applicant.routes';
 import jobRoutes from './routes/job.routes';
 import screeningResultRoutes from './routes/screeningResult.routes';
+import authRoutes from './routes/auth.routes'; // Importing the authentication routes
 import protectedRoutes from './routes/protected.routes'; // Importing the protected routes
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/api/applicants', applicantRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/screening-results', screeningResultRoutes);
+app.use('/api/auth', authRoutes); // Authentication routes for login and registration
 app.use('/api/protected', protectedRoutes); // Auth-protected admin/user routes
 
 export default app;
