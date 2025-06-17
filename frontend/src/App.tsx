@@ -31,7 +31,16 @@ export default function App() {
   }, [location]);
 
   useEffect(() => {
-    if (location.pathname === '/' && token) {
+    if (
+      !token &&
+      location.pathname !== '/signin' &&
+      location.pathname !== '/signup' &&
+      location.pathname !== '/forgot-password'
+    ) {
+      navigate('/signin');
+    } else if (location.pathname === '/' && !token) {
+      navigate('/signin');
+    } else if (location.pathname === '/' && token) {
       navigate('/resume');
     }
   }, [location, token, navigate]);
