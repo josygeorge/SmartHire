@@ -12,6 +12,7 @@ import { ProtectedRoute } from './components/Auth/ProtectedRoute';
 import { useAuthStore } from './store/useAuthStore';
 import LogoutButton from './components/Auth/LogoutButton';
 import ForgotPassword from './components/Auth/pages/ForgotPassword';
+import ResetPassword from './components/Auth/pages/ResetPassword';
 
 type Tab = 'resume' | 'job' | 'applicants' | 'job-list' | 'results';
 
@@ -56,7 +57,8 @@ export default function App() {
       {/* Tabs Navigation */}
       {location.pathname !== '/signin' &&
         location.pathname !== '/signup' &&
-        location.pathname !== '/forgot-password' && (
+        location.pathname !== '/forgot-password' &&
+        location.pathname !== '/reset-password' && (
           <nav className='flex justify-center flex-wrap gap-4 px-4 py-4 bg-gray-100 w-full'>
             {tabs.map((tab) => (
               <button
@@ -89,6 +91,7 @@ export default function App() {
             <Route path='/signin' element={<SignIn />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/reset-password' element={<ResetPassword />} />
             <Route
               path='/resume'
               element={
