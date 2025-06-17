@@ -10,6 +10,8 @@ const userSchema = new mongoose.Schema(
       enum: ['admin', 'user'],
       default: 'user',
     },
+    resetPasswordToken: String, // Token for password reset
+    resetPasswordExpires: Date, // Expiry time for the reset token
   },
   { timestamps: true }
 );
@@ -25,6 +27,8 @@ export type UserType = {
   email: string;
   password: string;
   role: 'admin' | 'user';
+  resetPasswordToken?: string; // Optional, used for password reset
+  resetPasswordExpires?: Date; // Optional, used for password reset
   createdAt: Date;
   updatedAt: Date;
 };

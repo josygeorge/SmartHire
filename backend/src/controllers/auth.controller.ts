@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { User } from '../models/User.model';
-
+import crypto from 'crypto';
 import * as bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { sendResetEmail } from '../utils/sendResetEmail';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecret';
 
@@ -53,5 +54,74 @@ export const login = async (req: Request, res: Response): Promise<any> => {
     });
   } catch (err) {
     res.status(500).json({ error: 'Login failed' });
+  }
+};
+
+// Function to handle password reset request
+export const forgotPassword = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ error: 'User not found' });
+    const token = crypto.randomBytes(32).toString('hex');
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour
+    await user.save();
+
+    await sendResetEmail(email, token);
+    res.json({ message: 'Reset link sent to your email' });
+  } catch (error) {
+    console.error('Error in forgotPassword:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// Function to handle password reset
+export const resetPassword = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  try {
+    const { token, password } = req.body;
+
+    if (!token || !password) {
+      return res
+        .status(400)
+        .json({ error: 'Token and new password are required' });
+    }
+
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ error: 'Password must be at least 6 characters' });
+    }
+
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: new Date() },
+    });
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ error: 'Reset link is invalid or expired' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+
+    await user.save();
+    res.json({ message: 'Password has been reset successfully' });
+  } catch (err) {
+    console.error('Reset password error:', err);
+    res.status(500).json({ error: 'Unable to reset password. Try again.' });
   }
 };

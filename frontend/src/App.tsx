@@ -13,6 +13,8 @@ import { useAuthStore } from './store/useAuthStore';
 import LogoutButton from './components/Auth/LogoutButton';
 import ForgotPassword from './components/Auth/pages/ForgotPassword';
 import ResetPassword from './components/Auth/pages/ResetPassword';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Tab = 'resume' | 'job' | 'applicants' | 'job-list' | 'results';
 
@@ -31,12 +33,32 @@ export default function App() {
     }
   }, [location]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (
       !token &&
       location.pathname !== '/signin' &&
       location.pathname !== '/signup' &&
       location.pathname !== '/forgot-password'
+    ) {
+      navigate('/signin');
+    } else if (location.pathname === '/' && !token) {
+      navigate('/signin');
+    } else if (location.pathname === '/' && token) {
+      navigate('/resume');
+    }
+  }, [location, token, navigate]); */
+
+  useEffect(() => {
+    const publicPaths = [
+      '/signin',
+      '/signup',
+      '/forgot-password',
+      '/reset-password',
+    ];
+
+    if (
+      !token &&
+      !publicPaths.some((path) => location.pathname.startsWith(path))
     ) {
       navigate('/signin');
     } else if (location.pathname === '/' && !token) {
@@ -135,7 +157,8 @@ export default function App() {
           </Routes>
         </div>
       </main>
-
+      {/* Toast Notifications */}
+      <ToastContainer position='top-right' autoClose={3000} />
       {/* Footer */}
       <footer className='bg-white text-center text-sm text-gray-500 py-4 w-full'>
         © {new Date().getFullYear()} SmartHire. All rights reserved.

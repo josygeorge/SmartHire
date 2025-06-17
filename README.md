@@ -34,6 +34,7 @@
 - 🧪 Tested with Jest & React Testing Library
 - ⚡️ Debounced search input and memoized rendering
 - ✅ Form validation with React Hook Form + Yup
+- 🔑 User Authentication: Secure Sign Up and Sign In and a secure 'Forgot Password' flow powered by the Resend API
 - ☁️ Deployed to Render and Vercel
 
 ---
@@ -52,6 +53,7 @@ Feature / Module | Status | Notes
 🔬 Unit Testing | ✅ Done | JobList tested with Jest + React Testing Library + Zustand mock
 🧠 Zustand State Management | ✅ Done | Store implemented for jobs + screening results
 🧪 API + Component Testing | ✅ Done | Tested Job CRUD, AI feedback, and empty state rendering
+🔑 User Authentication | ✅ Done | Secure Sign Up and Sign In functionalities, including password reset and a secure 'Forgot Password' flow powered by the Resend API
 
 # Testing using Jest - React Library
 

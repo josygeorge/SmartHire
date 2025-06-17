@@ -6,7 +6,9 @@ import jobRoutes from './routes/job.routes';
 import screeningResultRoutes from './routes/screeningResult.routes';
 import authRoutes from './routes/auth.routes'; // Importing the authentication routes
 import protectedRoutes from './routes/protected.routes'; // Importing the protected routes
+//import path from 'path';
 
+//dotenv.config({ path: path.resolve(__dirname, '../.env') });
 dotenv.config();
 
 const app = express();
