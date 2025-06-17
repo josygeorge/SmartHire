@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import useJobStore from '../store/useJobStore';
+import useJobStore from '../../store/useJobStore';
 import axios from 'axios';
 import { useState } from 'react';
 

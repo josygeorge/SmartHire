@@ -24,7 +24,7 @@ export const register = async (req: Request, res: Response): Promise<any> => {
     });
 
     const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, {
-      expiresIn: '7d',
+      expiresIn: '2d',
     });
 
     res.status(201).json({ token, user: { id: user._id, name, email, role } });

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
-import { useApplicantStore } from '../store/useApplicantStore';
+import { useApplicantStore } from '../../store/useApplicantStore';
 
 interface FormInputs {
   name: string;
