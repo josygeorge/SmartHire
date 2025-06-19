@@ -103,6 +103,7 @@ export default function ResultsViewer() {
       </p>
     );
   }
+  //console.log('Rendering Results:', results); // Debugging log to check results
 
   // === Render Results ===
   return (
@@ -113,7 +114,7 @@ export default function ResultsViewer() {
       {paginatedResults.map((res) => (
         <div
           key={res._id}
-          className='bg-white border rounded-2xl p-6 shadow-md space-y-4'
+          className='bg-gray-200 border rounded-2xl p-6 shadow-md space-y-4'
         >
           <div className='flex flex-col md:flex-row justify-between md:items-center'>
             <div>
@@ -164,11 +165,25 @@ export default function ResultsViewer() {
             </div>
           </div>
 
-          <div>
-            <p className='font-semibold text-gray-800'>
-              Suggested Interview Questions
-            </p>
-            <ul className='list-decimal list-inside text-sm text-gray-700 space-y-1'>
+          {/* Interview Questions */}
+          <div className='mt-4 bg-gray-300 p-4 rounded-md border'>
+            {/* <div className='flex justify-between items-center'> */}
+            <div className='flex justify-between items-center'>
+              <p className='font-semibold text-gray-800'>
+                Suggested Interview Questions
+              </p>
+              <button
+                onClick={() =>
+                  navigator.clipboard.writeText(
+                    res.interviewQuestions.join('\n')
+                  )
+                }
+                className='text-sm bg-green-900 text-gray-200 hover:underline'
+              >
+                Copy Questions
+              </button>
+            </div>
+            <ul className='list-decimal list-inside text-sm text-gray-700 space-y-1 mt-2'>
               {res.interviewQuestions.map((q, i) => (
                 <li key={i}>{q}</li>
               ))}
@@ -177,7 +192,7 @@ export default function ResultsViewer() {
         </div>
       ))}
       {/* === Pagination Controls === */}
-      {totalPages > 1 && (
+      {/* {totalPages > 1 && (
         <div className='flex justify-center items-center gap-4 mt-6'>
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
@@ -199,7 +214,46 @@ export default function ResultsViewer() {
             Next
           </button>
         </div>
+      )} */}
+
+      {totalPages > 1 && (
+        <div className='flex justify-center items-center gap-4 mt-6'>
+          <button
+            onClick={() => setCurrentPage(1)}
+            disabled={currentPage === 1}
+            className='px-3 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 disabled:opacity-50'
+          >
+            ⏮ First
+          </button>
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className='px-3 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 disabled:opacity-50'
+          >
+            ◀ Prev
+          </button>
+          <span className='text-sm font-medium text-gray-700'>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className='px-3 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 disabled:opacity-50'
+          >
+            Next ▶
+          </button>
+          <button
+            onClick={() => setCurrentPage(totalPages)}
+            disabled={currentPage === totalPages}
+            className='px-3 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 disabled:opacity-50'
+          >
+            Last ⏭
+          </button>
+        </div>
       )}
+      {/* End of Pagination Controls */}
     </div>
   );
 }

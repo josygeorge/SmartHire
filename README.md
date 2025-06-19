@@ -39,21 +39,28 @@
 
 ---
 
-## Current Status in SmartHire (MERN + Agentic AI Resume Screener)
+### ✅ **Current Status in SmartHire (MERN + Agentic AI Resume Screener)**
 
-- 🔍 Feature Progress Overview
+> **Feature Progress Overview:** 90% Complete
 
-Finished - 80%
-Feature / Module | Status | Notes
-🧑‍💼 Applicant Upload | ✅ Done | Resume stored via Multer
-📄 Resume Parsing | ✅ Done | Using pdf-parse
-💼 Job Creation | ✅ Done | Basic create form works
-🤖 AI Screening Integration | ✅ Done | Match score + analysis via OpenRouter + Mixtral
-📊 Screening Results Viewer | ✅ Done | ScreeningResults collection + frontend UI completed
-🔬 Unit Testing | ✅ Done | JobList tested with Jest + React Testing Library + Zustand mock
-🧠 Zustand State Management | ✅ Done | Store implemented for jobs + screening results
-🧪 API + Component Testing | ✅ Done | Tested Job CRUD, AI feedback, and empty state rendering
-🔑 User Authentication | ✅ Done | Secure Sign Up and Sign In functionalities, including password reset and a secure 'Forgot Password' flow powered by the Resend API
+| Feature / Module              | Status  | Notes                                                                                      |
+| ----------------------------- | ------- | ------------------------------------------------------------------------------------------ |
+| 🧑‍💼 Applicant Upload           | ✅ Done | Resume stored via Multer                                                                   |
+| 📄 Resume Parsing             | ✅ Done | Using `pdf-parse`                                                                          |
+| 💼 Job Creation               | ✅ Done | CRUD                                                                                       |
+| 🤖 AI Screening Integration   | ✅ Done | Match score + analysis via OpenRouter + Mistral                                            |
+| 📊 Screening Results Viewer   | ✅ Done | `ScreeningResults` collection + frontend UI completed                                      |
+| 🔬 Unit Testing               | ✅ Done | `JobList` tested with Jest + React Testing Library + Zustand mock                          |
+| 🧠 Zustand State Management   | ✅ Done | Store implemented for jobs + screening results                                             |
+| 🧪 API + Component Testing    | ✅ Done | Tested Job CRUD, AI feedback, and empty state rendering                                    |
+| 🔑 User Authentication        | ✅ Done | Secure Sign Up and Sign In, including **Forgot Password flow** using **Resend API**        |
+| 📋 Interview Questions UX     | ✅ Done | Interview questions displayed in ResultsViewer, with **Copy to Clipboard** feature         |
+| ⏮️ ⏭️ Pagination Enhancements | ✅ Done | **First** and **Last** buttons added to ResultsViewer pagination                           |
+| 🧹 Delete Orphaned Results    | ✅ Done | Removes results with missing `applicantId` or `jobId` — helpful for cleaning up stale data |
+
+---
+
+Let me know if you'd like this inserted directly into your project's `README.md` file or pushed to GitHub.
 
 # Testing using Jest - React Library
 

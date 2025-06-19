@@ -81,9 +81,6 @@ export const getScreeningResults = async (_: Request, res: Response) => {
 // AI integration
 // Run Screening
 
-// AI integration
-// Run Screening
-
 export const runAIForScreeningResult = async (
   req: Request,
   res: Response,
@@ -118,9 +115,9 @@ Return the result as a JSON object with this structure:
 {
   "score": number (0 to 100),
   "summary": string,
-  "strengths": [string, string, string],
-  "weaknesses": [string, string, string],
-  "interviewQuestions": [string, string, string]
+  "strengths": [string, string, string, string, string],
+  "weaknesses": [string, string, string, string, string],
+  "interviewQuestions": [string, string, string, string, string]
 }
 
 Ensure the response is valid JSON and matches the structure exactly.
@@ -231,93 +228,3 @@ Ensure the response is valid JSON and matches the structure exactly.
     });
   }
 };
-
-/* export const runAIForScreeningResult = async (
-  req: Request,
-  res: Response,
-  next?: NextFunction
-): Promise<any> => {
-  try {
-    const { applicantId, jobId } = req.body;
-
-    const applicant = await Applicant.findById(applicantId);
-    const job = await Job.findById(jobId);
-    if (!applicant || !job)
-      return res.status(404).json({ error: 'Applicant or Job not found' });
-
-    const prompt = `
-Given this resume:\n${applicant.resumeText}
-
-And this job description:\n${job.description}
-
-Provide:
-- A match score (0-100)
-- A one-paragraph summary
-- 3 strengths
-- 3 weaknesses
-- 3 interview questions
-Respond as a JSON object.
-`;
-
-    /* const response = await axios.post(
-      'https://openrouter.ai/api/v1/chat/completions',
-      {
-        model: 'mistralai/mixtral-8x7b',
-        //model: 'openrouter/mixtral-8x7b',
-        messages: [{ role: 'user', content: prompt }],
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    ); */
-/* try {
-      const response = await axios.post(
-        'https://openrouter.ai/api/v1/chat/completions',
-        {
-          //model: 'mistralai/mistral-nemo:free',
-          model: 'mistralai/devstral-small:free',
-          messages: [
-            { role: 'system', content: 'You are a helpful AI assistant.' },
-            {
-              role: 'user',
-              content: 'What are the benefits of learning Node.js?',
-            },
-          ],
-          //model: 'mistralai/mixtral-8x7b',
-          //model: 'mixtral-8x7b',
-          //messages: [{ role: 'user', content: prompt }],
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      return response;
-    } catch (error: any) {
-      console.error('OpenRouter Error:', error.response?.data || error.message);
-      throw error;
-    }
-    /* const aiContent = response.data.choices?.[0]?.message?.content;
-    const parsed = JSON.parse(aiContent || '{}');
-
-    const result = await ScreeningResult.create({
-      applicantId,
-      jobId,
-      summary: parsed.summary,
-      score: parsed.score,
-      strengths: parsed.strengths,
-      weaknesses: parsed.weaknesses,
-      interviewQuestions: parsed.interviewQuestions,
-    });
-
-    res.json(result);*/
-/*  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'AI screening failed' });
-  }
-}; */
