@@ -51,7 +51,11 @@ const ResumeUploadForm: React.FC = () => {
     }
     // Cast resume to FileList here
     const resumeFiles = data.resume as FileList;
-
+    const file = resumeFiles[0];
+    if (file.type === 'application/pdf' && file.size > 2 * 1024 * 1024) {
+      alert('PDF file is too large. Please upload a file under 2MB.');
+      return;
+    }
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('email', data.email);
@@ -129,6 +133,10 @@ const ResumeUploadForm: React.FC = () => {
             errors.resume ? 'border-red-500' : 'border-gray-300'
           }`}
         />
+        <small className='text-xs italic text-cyan-800'>
+          (*Max 2MB for PDFs; TXT files recommended for faster processing)
+        </small>
+
         {errors.resume && (
           <p className='text-red-500 text-sm mt-1'>{errors.resume.message}</p>
         )}

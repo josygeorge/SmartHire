@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Applicant } from '../models/Applicant.model';
 import pdfParse from 'pdf-parse';
+// import pdfParse from 'pdf-parse'; // ❌ Do not import here; use dynamic import in function
 
 // This type matches the shape Multer adds to Express.Request
 interface MulterRequest extends Request {
@@ -32,7 +33,7 @@ export const createApplicant = async (
     } else if (mimetype === 'application/pdf') {
       const result = await pdfParse(req.file.buffer);
       // 👇 dynamically import pdf-parse (ESM-safe)
-      /* const pdfParse = (await import('pdf-parse')).default; // ✅ FIXED
+      /* const pdfParse = (await import('pdf-parse')).default; // ✅ FIXED - this ensures correct ESM import
       const result = await pdfParse(buffer); */
       resumeText = result.text;
     } else {

@@ -3,12 +3,15 @@ import { useEffect, useState, useMemo } from 'react';
 import { useJobStore } from '../../store/useJobStore';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
+import { useAuthStore } from '../../store/useAuthStore';
 
 export default function JobList() {
   const jobs = useJobStore((state) => state.jobs);
   const setJobs = useJobStore((state) => state.setJobs);
   const deleteJob = useJobStore((state) => state.deleteJob);
   const updateJob = useJobStore((state) => state.updateJob);
+
+  const role = useAuthStore((state) => state?.role); // For role-based access control-admin only
 
   const [editingJobId, setEditingJobId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({
@@ -165,20 +168,22 @@ export default function JobList() {
                   <p className='text-sm text-gray-600'>
                     Skills: {job.skills.join(', ')}
                   </p>
-                  <div className='flex gap-2 mt-2'>
-                    <button
-                      onClick={() => handleEditClick(job)}
-                      className='bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700'
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(job.id!)}
-                      className='bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700'
-                    >
-                      Delete
-                    </button>
-                  </div>
+                  {role === 'admin' && (
+                    <div className='flex gap-2 mt-2'>
+                      <button
+                        onClick={() => handleEditClick(job)}
+                        className='bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700'
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(job.id!)}
+                        className='bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700'
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
                 </>
               )}
             </li>
