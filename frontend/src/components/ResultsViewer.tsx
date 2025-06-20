@@ -34,6 +34,10 @@ export default function ResultsViewer() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
+        // First clean up of Orphaned screening results - deletion ✅
+        await axios.delete('/api/screening-results/orphaned'); // Delete orphaned results
+
+        // Fetch the screening results
         const res = await axios.get('/api/screening-results');
         // --- CRITICAL FIX FOR 304 BLANK PAGE ---
         // If the response status is 304, axios.data will be empty.
@@ -80,6 +84,8 @@ export default function ResultsViewer() {
     };
     fetchResults();
   }, []);
+
+  console.log('Results fetched:', results); // Debugging log to check fetched results
 
   if (loading) return <p className='text-center mt-6'>Loading results...</p>;
   if (error) {

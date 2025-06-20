@@ -15,6 +15,7 @@ import ForgotPassword from './components/Auth/pages/ForgotPassword';
 import ResetPassword from './components/Auth/pages/ResetPassword';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { tabConfig } from './config/tabConfig';
 
 type Tab = 'resume' | 'job' | 'applicants' | 'job-list' | 'results';
 
@@ -22,10 +23,14 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('resume');
   const navigate = useNavigate();
   const location = useLocation();
-  const { token } = useAuthStore();
+  const { token, role } = useAuthStore();
+  // / Extract token and role from the auth store
+  // Determine if the user is an admin based on the role
+  const isAdmin = role ? role === 'admin' : false;
 
   const tabs: Tab[] = ['resume', 'job', 'applicants', 'job-list', 'results'];
 
+  // Set activeTab from current route
   useEffect(() => {
     const currentTab = location.pathname.slice(1) as Tab;
     if (tabs.includes(currentTab)) {
@@ -33,21 +38,10 @@ export default function App() {
     }
   }, [location]);
 
-  /* useEffect(() => {
-    if (
-      !token &&
-      location.pathname !== '/signin' &&
-      location.pathname !== '/signup' &&
-      location.pathname !== '/forgot-password'
-    ) {
-      navigate('/signin');
-    } else if (location.pathname === '/' && !token) {
-      navigate('/signin');
-    } else if (location.pathname === '/' && token) {
-      navigate('/resume');
-    }
-  }, [location, token, navigate]); */
+  // Filter tabs by role - using the tabConfig array
+  const visibleTabs = tabConfig.filter((tab) => !tab.adminOnly || isAdmin);
 
+  // Redirect logic based on authentication state
   useEffect(() => {
     const publicPaths = [
       '/signin',
@@ -82,25 +76,17 @@ export default function App() {
         location.pathname !== '/forgot-password' &&
         location.pathname !== '/reset-password' && (
           <nav className='flex justify-center flex-wrap gap-4 px-4 py-4 bg-gray-100 w-full'>
-            {tabs.map((tab) => (
+            {visibleTabs.map((tab) => (
               <button
-                key={tab}
-                onClick={() => navigate(`/${tab}`)}
+                key={tab.key}
+                onClick={() => navigate(tab.route)}
                 className={`px-5 py-2 rounded-lg font-medium transition-all duration-200 ${
-                  activeTab === tab
+                  activeTab === tab.key
                     ? 'bg-gray-700 text-white'
                     : 'bg-white border hover:bg-gray-200'
                 }`}
               >
-                {
-                  {
-                    resume: 'Resume Upload',
-                    job: 'Job Upload',
-                    applicants: 'List of Applicants',
-                    'job-list': 'List of Jobs',
-                    results: 'View Results',
-                  }[tab]
-                }
+                {tab.label}
               </button>
             ))}
           </nav>
