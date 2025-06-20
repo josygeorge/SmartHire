@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { Applicant } from '../models/Applicant.model';
-import pdfParse from 'pdf-parse';
-// import pdfParse from 'pdf-parse'; // ❌ Do not import here; use dynamic import in function
+// import pdfParse from 'pdf-parse';
 
 // This type matches the shape Multer adds to Express.Request
 interface MulterRequest extends Request {
@@ -31,10 +30,10 @@ export const createApplicant = async (
     if (mimetype === 'text/plain') {
       resumeText = buffer.toString('utf-8');
     } else if (mimetype === 'application/pdf') {
-      const result = await pdfParse(req.file.buffer);
+      // const result = await pdfParse(req.file.buffer);
       // 👇 dynamically import pdf-parse (ESM-safe)
-      /* const pdfParse = (await import('pdf-parse')).default; // ✅ FIXED - this ensures correct ESM import
-      const result = await pdfParse(buffer); */
+      const pdfParse = (await import('pdf-parse')).default; // ✅ FIXED - this ensures correct ESM import
+      const result = await pdfParse(buffer);
       resumeText = result.text;
     } else {
       res.status(400).json({ error: 'Unsupported file format.' });
@@ -47,7 +46,7 @@ export const createApplicant = async (
     });
 
     const saved = await applicant.save();
-    console.log('Saved to MongoDB:', saved);
+    // console.log('Saved to MongoDB:', saved);
 
     res.status(201).json({ applicant: saved });
   } catch (error) {

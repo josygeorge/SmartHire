@@ -8,8 +8,7 @@
     "dev": "tsx watch src/server.ts",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
-    "build": "tsc",
-    "postinstall": "sed -i '' '/module.exports = PDF/,$!d' node_modules/pdf-parse/index.js"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +24,7 @@
     "multer": "^2.0.0",
     "node-fetch": "^3.3.2",
     "nodemailer": "^7.0.3",
-    "pdf-parse": "^1.0.1",
+    "pdf-parse": "latest",
     "resend": "^4.6.0",
     "xmldom": "^0.6.0"
   },
