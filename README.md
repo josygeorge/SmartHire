@@ -1,6 +1,6 @@
 # 🧠 SmartHire
 
-> **SmartHire** is an AI-powered resume screener and interview assistant built with the MERN stack. It uses GPT-4 via LangChain to analyze resumes, compare them with job descriptions, and generate screening summaries, scores, and interview questions.
+> **SmartHire** is an AI-powered resume screener and interview assistant built with the M.E.R.N. stack. It leverages Agentic AI using the Mistral LLM via OpenRouter to analyze resumes, match them against job descriptions, and generate screening summaries, candidate scores, and role-specific interview questions.
 
 ---
 
