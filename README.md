@@ -60,8 +60,6 @@
 
 ---
 
-Let me know if you'd like this inserted directly into your project's `README.md` file or pushed to GitHub.
-
 # Testing using Jest - React Library
 
 ✅ Unit Testing: JobList Component
@@ -100,6 +98,22 @@ npm run test
 # or watch mode
 
 npm run test:watch
+
+## “Note: Email delivery is currently sandboxed via Resend to a verified developer email for demonstration purposes. Full email delivery can be unlocked by attaching a custom domain.”
+
+📧 Forgot Password (Email Reset Flow)
+
+SmartHire uses Resend for sending password reset emails.
+
+    Current Mode: Sandbox mode with a verified developer email (onboarding@resend.dev).
+
+    Purpose: Demonstrates working email reset functionality in both development and deployed (production) environments.
+
+    Limitation: Emails can only be sent to the developer’s verified address due to sandbox restrictions.
+
+    ** Future Ready: Easily upgradable by verifying a custom domain (e.g., smarthire.com) to allow sending emails to all users.
+
+    ⚙️ The system is built to scale — switching to a full custom domain (via Resend or any SMTP provider like SendGrid) is seamless and only requires DNS configuration.
 
 ## Comments
 
