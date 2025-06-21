@@ -1,130 +1,131 @@
-# 🧠 SmartHire
+# 🧠 SmartHire – AI-Powered Resume Screener & Interview Assistant
 
-> **SmartHire** is an AI-powered resume screener and interview assistant built with the M.E.R.N. stack. It leverages Agentic AI using the Mistral LLM via OpenRouter to analyze resumes, match them against job descriptions, and generate screening summaries, candidate scores, and role-specific interview questions.
+> **SmartHire** is a full-stack MERN application that uses Agentic AI (powered by Mistral via OpenRouter) to screen resumes, match them against job descriptions, and generate role-specific interview questions, scores, and summaries. Built with scalability, clean code, and modular design in mind.
 
 ---
 
 ## 🚀 Live Demo
 
-🌐 Frontend: [https://smarthire.vercel.app](https://smarthire.vercel.app)  
-🌐 API: [https://smarthire-api.onrender.com](https://smarthire-api.onrender.com)  
-📽️ Demo Video: _Coming soon_
+- 🌐 **Frontend:** [smarthire.vercel.app](https://smarthire.vercel.app)
+- 🌐 **API:** [smarthire-api.onrender.com](https://smarthire-api.onrender.com)
+- 📽️ **Demo Video:** _Coming soon_
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Tech Stack
-|🖥️ Frontend | React, TypeScript, Zustand, Vite
-|🔙 Backend | Node.js, Express, TypeScript
-|🗃️ Database | MongoDB Atlas
-|🤖 AI Agent | OpenRouter with Model: 'mistralai/devstral-small:free'
-|📎 File Upload | Multer
-|☁️ Deployment | Vercel (frontend), Render (backend)
-|🧪 Testing | Jest, React Testing Library, Postman
+| Layer          | Tech Stack                                          |
+| -------------- | --------------------------------------------------- |
+| 🖥️ Frontend    | React, TypeScript, Zustand, Vite                    |
+| 🔙 Backend     | Node.js, Express, TypeScript                        |
+| 🗃️ Database    | MongoDB Atlas                                       |
+| 🤖 AI Agent    | OpenRouter (Model: `mistralai/devstral-small:free`) |
+| 📎 File Upload | Multer                                              |
+| ☁️ Deployment  | Vercel (frontend), Render (backend)                 |
+| 🧪 Testing     | Jest, React Testing Library, Postman                |
 
 ---
 
 ## 📦 Features
 
-- 🔍 Upload and parse resumes
-- 📌 Create and manage job descriptions
-- 🧠 AI-based resume screening and scoring
-- 📝 Auto-generated interview questions
-- 🧪 Tested with Jest & React Testing Library
-- ⚡️ Debounced search input and memoized rendering
-- ✅ Form validation with React Hook Form + Yup
-- 🔑 User Authentication: Secure Sign Up and Sign In and a secure 'Forgot Password' flow powered by the Resend API
-- ☁️ Deployed to Render and Vercel
+- ✅ Upload and parse resumes (PDF/TXT)
+- ✅ Create, edit, and delete job postings
+- ✅ AI-powered resume screening and scoring
+- ✅ Auto-generated interview questions
+- ✅ Search + pagination in Screening Results
+- ✅ Copy-to-clipboard for interview Q\&A
+- ✅ Debounced search & memoized rendering
+- ✅ Role-based tabs & protected routes (Admin/User)
+- ✅ “Forgot Password” email flow using Resend API
+- ✅ Deletes orphaned screening results (missing job/applicant)
+- ✅ Fully deployed with secure authentication & modern UX
 
 ---
 
-### ✅ **Current Status in SmartHire (MERN + Agentic AI Resume Screener)**
+## ✅ Feature Progress
 
-> **Feature Progress Overview:** 90% Complete
-
-| Feature / Module              | Status  | Notes                                                                                      |
-| ----------------------------- | ------- | ------------------------------------------------------------------------------------------ |
-| 🧑‍💼 Applicant Upload           | ✅ Done | Resume stored via Multer                                                                   |
-| 📄 Resume Parsing             | ✅ Done | Using `pdf-parse`                                                                          |
-| 💼 Job Creation               | ✅ Done | CRUD                                                                                       |
-| 🤖 AI Screening Integration   | ✅ Done | Match score + analysis via OpenRouter + Mistral                                            |
-| 📊 Screening Results Viewer   | ✅ Done | `ScreeningResults` collection + frontend UI completed                                      |
-| 🔬 Unit Testing               | ✅ Done | `JobList` tested with Jest + React Testing Library + Zustand mock                          |
-| 🧠 Zustand State Management   | ✅ Done | Store implemented for jobs + screening results                                             |
-| 🧪 API + Component Testing    | ✅ Done | Tested Job CRUD, AI feedback, and empty state rendering                                    |
-| 🔑 User Authentication        | ✅ Done | Secure Sign Up and Sign In, including **Forgot Password flow** using **Resend API**        |
-| 📋 Interview Questions UX     | ✅ Done | Interview questions displayed in ResultsViewer, with **Copy to Clipboard** feature         |
-| ⏮️ ⏭️ Pagination Enhancements | ✅ Done | **First** and **Last** buttons added to ResultsViewer pagination                           |
-| 🧹 Delete Orphaned Results    | ✅ Done | Removes results with missing `applicantId` or `jobId` — helpful for cleaning up stale data |
+| Module                      | Status  | Description                                                              |
+| --------------------------- | ------- | ------------------------------------------------------------------------ |
+| 🧑‍💼 Resume Upload            | ✅ Done | Resumes uploaded via Multer and parsed using `pdf-parse`                 |
+| 💼 Job Management           | ✅ Done | Full CRUD with inline editing and deletion                               |
+| 🧠 Agentic AI Screening     | ✅ Done | Matches resumes to jobs with strengths, weaknesses, scores, and insights |
+| 📊 Screening Results Viewer | ✅ Done | Displays AI screening output with pagination & clipboard feature         |
+| 🔐 Authentication           | ✅ Done | Secure SignUp / SignIn + role-based routing + protected routes           |
+| 🧪 Unit & API Testing       | ✅ Done | JobList tested using Jest + React Testing Library                        |
+| 🧹 Orphan Cleanup           | ✅ Done | Frontend triggers deletion of results with missing job/applicant links   |
+| 🧾 Interview Question UX    | ✅ Done | Automatically generated, role-based, and copied with one click           |
 
 ---
 
-# Testing using Jest - React Library
+## 🔬 Testing Strategy
 
-✅ Unit Testing: JobList Component
+🧪 **Unit Tested:** `JobList` Component
 
-The JobList component is fully covered with unit tests using Jest and React Testing Library, with proper mocking of both Zustand store and Axios for API interactions.
-🧪 Testing Setup Highlights
+- Zustand Store mocked
+- Axios calls stubbed
+- Jest + RTL used for UI logic and state tests
 
-    ✅ Zustand store (useJobStore) successfully mocked
+### ✅ Covered Test Cases:
 
-    ✅ Axios HTTP requests stubbed using Jest
+- No jobs available (empty state)
+- Job list rendered with mock data
+- Edit/save flow
+- Cancel edit mode
+- Delete job and confirm store update
 
-    ✅ tsconfig configured with:
+### 🧪 Run Tests
 
-        jsx: react-jsx
-
-        esModuleInterop: true (to avoid import issues)
-
-    ✅ Jest environment set up with jest-environment-jsdom for DOM simulation
-
-🔍 Test Cases Covered
-
-    ✅ Renders "No jobs available" when store is empty
-
-    ✅ Renders job listings correctly with mock data
-
-    ✅ Edits a job and updates state on "Save"
-
-    ✅ Cancels edit mode and reverts UI changes
-
-    ✅ Deletes a job and confirms store update
-
-# 🧪 How to Run Tests
-
+```bash
 npm run test
-
-# or watch mode
-
+# or
 npm run test:watch
+```
 
-## “Note: Email delivery is currently sandboxed via Resend to a verified developer email for demonstration purposes. Full email delivery can be unlocked by attaching a custom domain.”
+---
 
-📧 Forgot Password (Email Reset Flow)
+## 🔑 Authentication & Email Flow
 
-SmartHire uses Resend for sending password reset emails.
+### 🔒 Forgot Password via Resend API
 
-    Current Mode: Sandbox mode with a verified developer email (onboarding@resend.dev).
+- Current Mode: **Sandboxed** to a verified developer email
+- Limit: Emails can only be sent to developer inbox (`onboarding@resend.dev`)
+- Demo-Ready: Works fully in deployed environments (Vercel + Render)
+- Future-Ready: Easily upgradable with custom domain for all-user email access
 
-    Purpose: Demonstrates working email reset functionality in both development and deployed (production) environments.
+> **ℹ️ Note:** This is a conscious trade-off to demonstrate email functionality without requiring a domain purchase.
 
-    Limitation: Emails can only be sent to the developer’s verified address due to sandbox restrictions.
+---
 
-    ** Future Ready: Easily upgradable by verifying a custom domain (e.g., smarthire.com) to allow sending emails to all users.
+## 🖼️ Screenshots
 
-    ⚙️ The system is built to scale — switching to a full custom domain (via Resend or any SMTP provider like SendGrid) is seamless and only requires DNS configuration.
-
-## Comments
-
-> "The project planned sequence strikes a good balance between functionality, performance, and polish."
-> "That’s a solid and well-prioritized plan, especially for a 3-day sprint with 3–4 hours/day."
-
-## 📸 Screenshots
-
-> Add real screenshots here after deployment:
+> _Add screenshots after deployment to production_
 
 ```md
 ![Home Page](screenshots/home.png)
 ![Screening Results](screenshots/screening.png)
 ```
+
+---
+
+## 🧠 Project Summary
+
+SmartHire demonstrates strong capabilities in:
+
+- Full-stack MERN development
+- AI integration with external APIs (OpenRouter)
+- Secure and modular authentication flow
+- File handling and dynamic resume parsing
+- Thoughtful UI/UX with search, pagination, and feedback loops
+- Clean code, modular routing, and well-commented components
+
+---
+
+## 📢 End Notes
+
+> "SmartHire reflects real-world application design under time constraints (3–4 hours/day for 3 days). The development flow balances innovation with practical MVP delivery."
+
+Want to collaborate, improve, or integrate? Feel free to fork or get in touch!
+
+---
+
+Let me know if you'd like help adding screenshots, your LinkedIn/GitHub/contact links, or a “Contributing” section!
