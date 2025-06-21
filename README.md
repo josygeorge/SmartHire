@@ -1,4 +1,4 @@
-# 🧠 SmartHire – AI-Powered Resume Screener & Interview Assistant
+# 🧠 SmartHire – an AI-Powered Assistant
 
 > **SmartHire** is a full-stack MERN application that uses Agentic AI (powered by Mistral via OpenRouter) to screen resumes, match them against job descriptions, and generate role-specific interview questions, scores, and summaries. Built with scalability, clean code, and modular design in mind.
 
@@ -122,7 +122,7 @@ SmartHire demonstrates strong capabilities in:
 
 ## 📢 End Notes
 
-> "SmartHire reflects real-world application design under time constraints (3–4 hours/day for 3 days). The development flow balances innovation with practical MVP delivery."
+> "SmartHire reflects real-world application design under time constraints (3–4 hours/day for 18 days). The development flow balances innovation with practical MVP delivery."
 
 Want to collaborate, improve, or integrate? Feel free to fork or get in touch!
 
