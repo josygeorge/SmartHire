@@ -12,6 +12,13 @@
 
 ---
 
+## 📅 Project History
+
+📖 A complete history of daily development progress, feature additions, and fixes is available in the [CHANGELOG.md](./CHANGELOG.md).  
+It highlights how SmartHire evolved from setup to full-stack deployment over an 18-day period.
+
+---
+
 ## 🛠️ Tech Stack
 
 | Layer          | Tech Stack                                          |
