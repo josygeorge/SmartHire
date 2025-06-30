@@ -61,8 +61,12 @@ export default function Signup() {
           onChange={(e) => setForm({ ...form, role: e.target.value })}
           className='w-full px-4 py-2 border rounded text-white'
         >
-          <option value='user'>User</option>
-          <option value='admin'>Admin</option>
+          <option value='user' selected>
+            User
+          </option>
+          <option value='admin' hidden>
+            Admin
+          </option>
         </select>
         <button
           type='submit'
