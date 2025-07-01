@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuthStore } from '../../../store/useAuthStore';
+import { BASE_URL } from '../../../config/config';
 
 export default function SignIn() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -13,7 +14,8 @@ export default function SignIn() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/login', form);
+      //const res = await axios.post('/api/auth/login', form);
+      const res = await axios.post(`${BASE_URL}/api/auth/login`, form);
       const { token, user } = res.data;
       setAuth(token, user.role); // Auth needed to include user 'role'
       navigate('/results');

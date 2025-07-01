@@ -24,6 +24,7 @@ It highlights how SmartHire evolved from setup to full-stack deployment over an 
 | Layer          | Tech Stack                                          |
 | -------------- | --------------------------------------------------- |
 | 🖥️ Frontend    | React, TypeScript, Zustand, Vite                    |
+| 💻 Desktop App | Electron (Wrapper for Frontend UI)                  |
 | 🔙 Backend     | Node.js, Express, TypeScript                        |
 | 🗃️ Database    | MongoDB Atlas                                       |
 | 🤖 AI Agent    | OpenRouter (Model: `mistralai/devstral-small:free`) |
