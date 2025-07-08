@@ -19,9 +19,10 @@ export default function Signup() {
     e.preventDefault();
     try {
       const res = await axios.post('/api/auth/register', form);
-      const { token, role } = res.data;
-      setAuth(token, role);
-      navigate('/results'); // redirect after login
+      const { token, user } = res.data;
+      setAuth(token, user.role);
+      setTimeout(() => navigate('/results'), 1000); // optional delay for UX
+      // navigate('/results'); // redirect after login
     } catch (err: any) {
       setError(err.response?.data?.error || 'Signup failed');
     }
@@ -61,9 +62,7 @@ export default function Signup() {
           onChange={(e) => setForm({ ...form, role: e.target.value })}
           className='w-full px-4 py-2 border rounded text-white'
         >
-          <option value='user' selected>
-            User
-          </option>
+          <option defaultValue='user'>User</option>
           <option value='admin' hidden>
             Admin
           </option>

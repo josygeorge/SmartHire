@@ -1,6 +1,5 @@
-// store/authStore.ts
-// Sync Zustand store with localStorage (persist across reloads)
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 interface AuthState {
   token: string | null;
@@ -9,17 +8,23 @@ interface AuthState {
   clearAuth: () => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  token: localStorage.getItem('token'),
-  role: localStorage.getItem('role') as 'admin' | 'user' | null,
-  setAuth: (token, role) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('role', role);
-    set({ token, role });
-  },
-  clearAuth: () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    set({ token: null, role: null });
-  },
-}));
+export const useAuthStore = create<AuthState>()(
+  // Apply the persist middleware to save state to localStorage
+  persist(
+    (set) => ({
+      token: null,
+      role: null,
+      setAuth: (token, role) => set({ token, role }),
+      clearAuth: () => set({ token: null, role: null }),
+    }),
+    {
+      // Unique name for the key in localStorage
+      name: 'auth-storage',
+      // Specify localStorage as the storage mechanism
+      storage: createJSONStorage(() => localStorage),
+      // Optional: You can choose to only persist specific parts of the state
+      // For example, if you only want to persist the token:
+      // partialize: (state) => ({ token: state.token }),
+    }
+  )
+);

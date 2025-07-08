@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../config/config';
 
 interface ScreeningResult {
   _id: string;
@@ -35,10 +36,10 @@ export default function ResultsViewer() {
     const fetchResults = async () => {
       try {
         // First clean up of Orphaned screening results - deletion ✅
-        await axios.delete('/api/screening-results/orphaned'); // Delete orphaned results
+        await axios.delete(`${BASE_URL}/api/screening-results/orphaned`); // Delete orphaned results
 
         // Fetch the screening results
-        const res = await axios.get('/api/screening-results');
+        const res = await axios.get(`${BASE_URL}/api/screening-results`);
         // --- CRITICAL FIX FOR 304 BLANK PAGE ---
         // If the response status is 304, axios.data will be empty.
         // We should *not* update the results state in this case,
