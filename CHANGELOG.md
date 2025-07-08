@@ -6,7 +6,30 @@
 
 ---
 
-### 🟩 **July July 8, 2025 – ⚙️ Added Settings Dropdown in Header**
+## [1.2.0] - 2025-07-06
+
+### Added
+
+- Collapsible sidebar menu for tab navigation
+  - Animated expand/collapse behavior
+  - Hover tooltips in collapsed state
+  - Full-width buttons for cleaner layout
+- Sidebar layout adjusts with floating header
+
+### Changed
+
+- Navigation was previously horizontal; replaced with vertical sidebar for better usability and space efficiency.
+
+### 🟩 **July 8, 2025 – Added 📚 Sidebar Menu (Collapsible)**
+
+    ✅ `feat: Added Collapsible sidebar menu for tab navigation`
+    ✅ `ui: Animated expand/collapse behavior + Hover tooltips in collapsed state + Full-width buttons for cleaner layout`
+    ✅ `refactor: Sidebar layout adjusts with floating header`
+    ✅ `changed: Navigation was previously horizontal; replaced with vertical sidebar for better usability and space efficiency.`
+
+---
+
+### 🟩 **July 8, 2025 – ⚙️ Added Settings Dropdown in Header**
 
     ✅ `feat: Added Settings dropdown with gear icon to header (shows email + logout)`
     ✅ `ui: Tailwind styling + click-outside dropdown logic with conditional rendering`

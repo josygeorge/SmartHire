@@ -38,7 +38,6 @@ export default function JobList() {
 
     fetchJobs();
   }, [setJobs]);
-  console.log(jobs);
 
   // Debounced search handler
   useEffect(() => {

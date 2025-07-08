@@ -65,21 +65,24 @@ It highlights how SmartHire evolved from setup to full-stack deployment over an 
 
 ---
 
-## 🔧 Recent Fixes & Enhancements
-
-### 1. 🛠️ Fixed Path Collision Redirection Bug (June 28 – July 2, 2025)
-
-- **Issue:** After sign-up, the app redirected inconsistently — paths like `/signin` and `/results` flickered and conflicted, causing UI to render blank or partially.
-- **Root Cause:** Auth-based redirect logic and Zustand hydration timing were conflicting with React Router’s rendering flow.
-- **Fix Duration:** ~5 days of 2-hour sessions
-- **Solution Highlights:**
-  - Refactored `useEffect` logic to properly handle routing after hydration
-  - Ensured redirects only happen once Zustand store is fully hydrated
-  - Used a fallback `*` route to catch undefined paths
+## 🔧 Recent Fixes & 🧭 UI Enhancements
 
 ---
 
-### 2. ⚙️ Added Settings Dropdown in Header (July 8, 2025)
+### - 📚 Sidebar Menu (Collapsible) Navigation (July 8, 2025 )
+
+- Introduced a **collapsible sidebar menu** for better navigation and responsiveness.
+- Sidebar supports:
+  - Collapsing and expanding with smooth animation
+  - Tab highlighting for active routes
+  - Icons alongside labels
+  - Tooltip on hover when collapsed
+- Adjusts layout dynamically so the header floats above, and the main content resizes accordingly.
+- **Implementation Time:** ~1.5 hours
+
+---
+
+### - ⚙️ Added Settings Dropdown in Header (July 8, 2025)
 
 - **Goal:** Improve UX by allowing users to view their email and logout easily
 - **What’s New:**
@@ -88,6 +91,18 @@ It highlights how SmartHire evolved from setup to full-stack deployment over an 
   - Includes a "Logout" button inside the dropdown
 - **Implementation Time:** ~2 hours
 - **Built With:** Zustand, TailwindCSS, `@heroicons/react`, and click-outside detection
+
+---
+
+### - 🛠️ Fixed Path Collision Redirection Bug (June 28 – July 2, 2025)
+
+- **Issue:** After sign-up, the app redirected inconsistently — paths like `/signin` and `/results` flickered and conflicted, causing UI to render blank or partially.
+- **Root Cause:** Auth-based redirect logic and Zustand hydration timing were conflicting with React Router’s rendering flow.
+- **Fix Duration:** ~5 days of 2-hour sessions
+- **Solution Highlights:**
+  - Refactored `useEffect` logic to properly handle routing after hydration
+  - Ensured redirects only happen once Zustand store is fully hydrated
+  - Used a fallback `*` route to catch undefined paths
 
 ---
 
