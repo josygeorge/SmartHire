@@ -65,6 +65,32 @@ It highlights how SmartHire evolved from setup to full-stack deployment over an 
 
 ---
 
+## 🔧 Recent Fixes & Enhancements
+
+### 1. 🛠️ Fixed Path Collision Redirection Bug (June 28 – July 2, 2025)
+
+- **Issue:** After sign-up, the app redirected inconsistently — paths like `/signin` and `/results` flickered and conflicted, causing UI to render blank or partially.
+- **Root Cause:** Auth-based redirect logic and Zustand hydration timing were conflicting with React Router’s rendering flow.
+- **Fix Duration:** ~5 days of 2-hour sessions
+- **Solution Highlights:**
+  - Refactored `useEffect` logic to properly handle routing after hydration
+  - Ensured redirects only happen once Zustand store is fully hydrated
+  - Used a fallback `*` route to catch undefined paths
+
+---
+
+### 2. ⚙️ Added Settings Dropdown in Header (July 8, 2025)
+
+- **Goal:** Improve UX by allowing users to view their email and logout easily
+- **What’s New:**
+  - ⚙️ Gear icon added to top-right of the header
+  - Clicking it reveals a dropdown showing the logged-in user's email
+  - Includes a "Logout" button inside the dropdown
+- **Implementation Time:** ~2 hours
+- **Built With:** Zustand, TailwindCSS, `@heroicons/react`, and click-outside detection
+
+---
+
 ## 🔬 Testing Strategy
 
 🧪 **Unit Tested:** `JobList` Component
@@ -135,5 +161,3 @@ SmartHire demonstrates strong capabilities in:
 Want to collaborate, improve, or integrate? Feel free to fork or get in touch!
 
 ---
-
-Let me know if you'd like help adding screenshots, your LinkedIn/GitHub/contact links, or a “Contributing” section!

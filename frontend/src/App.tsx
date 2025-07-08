@@ -20,10 +20,10 @@ import ResetPassword from './components/Auth/pages/ResetPassword';
 
 import { ProtectedRoute } from './components/Auth/ProtectedRoute';
 import { useAuthStore } from './store/useAuthStore';
-import LogoutButton from './components/Auth/LogoutButton';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { tabConfig } from './config/tabConfig';
+import SettingsDropDown from './components/Auth/pages/header/SettingsDropDown';
 
 type Tab = 'resume' | 'job' | 'applicants' | 'job-list' | 'results';
 
@@ -78,7 +78,7 @@ export default function App() {
     <div className='flex flex-col h-screen w-full bg-gray-50 text-gray-800'>
       <header className='bg-white shadow px-6 py-4 w-full flex justify-between items-center'>
         <h1 className='text-3xl font-bold'>SmartHire AI Platform</h1>
-        {token && <LogoutButton />}
+        {token && <SettingsDropDown />}
       </header>
 
       {token && (

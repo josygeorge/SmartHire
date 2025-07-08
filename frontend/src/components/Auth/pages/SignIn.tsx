@@ -17,7 +17,7 @@ export default function SignIn() {
       //const res = await axios.post('/api/auth/login', form);
       const res = await axios.post(`${BASE_URL}/api/auth/login`, form);
       const { token, user } = res.data;
-      setAuth(token, user.role); // Auth needed to include user 'role'
+      setAuth(token, user.role, user.email); // Auth needed to include user 'role'. User email included in the store to display in the header settings ⚙️ gear icon dropdown
       navigate('/results');
     } catch (err: any) {
       setError(err.response?.data?.error || 'Login failed');

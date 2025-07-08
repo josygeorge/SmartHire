@@ -20,9 +20,9 @@ export default function Signup() {
     try {
       const res = await axios.post('/api/auth/register', form);
       const { token, user } = res.data;
-      setAuth(token, user.role);
+      setAuth(token, user.role, user.email);
       setTimeout(() => navigate('/results'), 1000); // optional delay for UX
-      // navigate('/results'); // redirect after login
+      // navigate('/results'); // redirect after login - FIX for the delay
     } catch (err: any) {
       setError(err.response?.data?.error || 'Signup failed');
     }

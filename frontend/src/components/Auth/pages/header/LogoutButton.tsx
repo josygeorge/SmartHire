@@ -1,6 +1,6 @@
 // components/LogoutButton.tsx
 import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../../store/useAuthStore';
+import { useAuthStore } from '../../../../store/useAuthStore';
 
 export default function LogoutButton() {
   const clearAuth = useAuthStore((s) => s.clearAuth);
@@ -14,7 +14,7 @@ export default function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      className='px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700'
+      className='px-2 py-1 text-red-600 bg-gray-200 rounded hover:bg-gray-300'
     >
       Logout
     </button>

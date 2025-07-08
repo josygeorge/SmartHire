@@ -1,6 +1,24 @@
 ## 📅 SmartHire Project Commit History
 
 > 🎯 Project Duration: **May 27, 2025 – June 20, 2025**
+>
+> > ⚙️🔧🛠️ TroubleShooting and New Features: **June 28, 2025 – Till Date**
+
+---
+
+### 🟩 **July July 8, 2025 – ⚙️ Added Settings Dropdown in Header**
+
+    ✅ `feat: Added Settings dropdown with gear icon to header (shows email + logout)`
+    ✅ `ui: Tailwind styling + click-outside dropdown logic with conditional rendering`
+
+---
+
+### 🟩 **June 28 - July 2, 2025 – 🛠 Fixed Path Collision Redirection Bug**
+
+    ✅ `fix: Zustand hydration issue affecting initial route rendering`
+    ✅ `fix: Path collision bug after SignIn/SignUp causing blank screens`
+    ✅ `refactor: Simplified protected route and app-level redirect logic`
+    ✅ `test: Verified role-based access and routing works post-hydration`
 
 ---
 

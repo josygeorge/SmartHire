@@ -86,7 +86,7 @@ export default function ResultsViewer() {
     fetchResults();
   }, []);
 
-  console.log('Results fetched:', results); // Debugging log to check fetched results
+  // console.log('Results fetched:', results); // Debugging log to check fetched results
 
   if (loading) return <p className='text-center mt-6'>Loading results...</p>;
   if (error) {
