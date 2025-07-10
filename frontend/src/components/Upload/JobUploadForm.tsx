@@ -59,7 +59,7 @@ export default function JobUploadForm() {
 
   return (
     <div className='w-full mx-auto bg-white text-black shadow-lg rounded-2xl p-6 my-6'>
-      <h2 className='text-2xl font-semibold mb-4'>Upload a Job Posting</h2>
+      <h3 className='text-2xl font-semibold mb-4'>Upload a Job Posting</h3>
       <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
         <div>
           <input

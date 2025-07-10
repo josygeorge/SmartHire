@@ -1,128 +1,107 @@
-# 🧠 SmartHire – an AI-Powered Assistant
+# 🧠 SmartHire – An AI-Powered Hiring Assistant
 
-> **SmartHire** is a full-stack MERN application that uses Agentic AI (powered by Mistral via OpenRouter) to screen resumes, match them against job descriptions, and generate role-specific interview questions, scores, and summaries. Built with scalability, clean code, and modular design in mind.
+SmartHire is a full-stack MERN application that leverages **Agentic AI** (via OpenRouter + Mistral) to intelligently screen resumes, match them to job descriptions, and generate tailored interview questions, insights, and scores.
+
+Built with scalability, modern UI/UX, and clean architecture in mind.
 
 ---
 
-## 🚀 Live Demo
+## 🌐 Live Demo
 
-- 🌐 **Frontend:** [smarthire.vercel.app](https://smarthire.vercel.app)
-- 🌐 **API:** [smarthire-api.onrender.com](https://smarthire-api.onrender.com)
-- 📽️ **Demo Video:** _Coming soon_
+- 🔗 **Frontend**: [smarthire.vercel.app](https://smarthire.vercel.app)
+- 🔗 **API**: [smarthire-api.onrender.com](https://smarthire-api.onrender.com)
+- 🎥 **Demo Video**: _Coming soon_
 
 ---
 
 ## 📅 Project History
 
-📖 A complete history of daily development progress, feature additions, and fixes is available in the [CHANGELOG.md](./CHANGELOG.md).  
+📖 A complete history of daily development progress, feature additions, and fixes is available in the [CHANGELOG.md](./CHANGELOG.md).
+
 It highlights how SmartHire evolved from setup to full-stack deployment over an 18-day period.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer          | Tech Stack                                          |
+| Layer          | Technologies                                        |
 | -------------- | --------------------------------------------------- |
 | 🖥️ Frontend    | React, TypeScript, Zustand, Vite                    |
-| 💻 Desktop App | Electron (Wrapper for Frontend UI)                  |
+| 💻 Desktop App | Electron (frontend wrapper)                         |
 | 🔙 Backend     | Node.js, Express, TypeScript                        |
 | 🗃️ Database    | MongoDB Atlas                                       |
 | 🤖 AI Agent    | OpenRouter (Model: `mistralai/devstral-small:free`) |
-| 📎 File Upload | Multer                                              |
+| 📎 File Upload | Multer (PDF/TXT resume support)                     |
 | ☁️ Deployment  | Vercel (frontend), Render (backend)                 |
 | 🧪 Testing     | Jest, React Testing Library, Postman                |
 
 ---
 
-## 📦 Features
+## ✅ Features
 
-- ✅ Upload and parse resumes (PDF/TXT)
-- ✅ Create, edit, and delete job postings
-- ✅ AI-powered resume screening and scoring
-- ✅ Auto-generated interview questions
-- ✅ Search + pagination in Screening Results
-- ✅ Copy-to-clipboard for interview Q\&A
-- ✅ Debounced search & memoized rendering
-- ✅ Role-based tabs & protected routes (Admin/User)
-- ✅ “Forgot Password” email flow using Resend API
-- ✅ Deletes orphaned screening results (missing job/applicant)
-- ✅ Fully deployed with secure authentication & modern UX
-
----
-
-## ✅ Feature Progress
-
-| Module                      | Status  | Description                                                              |
-| --------------------------- | ------- | ------------------------------------------------------------------------ |
-| 🧑‍💼 Resume Upload            | ✅ Done | Resumes uploaded via Multer and parsed using `pdf-parse`                 |
-| 💼 Job Management           | ✅ Done | Full CRUD with inline editing and deletion                               |
-| 🧠 Agentic AI Screening     | ✅ Done | Matches resumes to jobs with strengths, weaknesses, scores, and insights |
-| 📊 Screening Results Viewer | ✅ Done | Displays AI screening output with pagination & clipboard feature         |
-| 🔐 Authentication           | ✅ Done | Secure SignUp / SignIn + role-based routing + protected routes           |
-| 🧪 Unit & API Testing       | ✅ Done | JobList tested using Jest + React Testing Library                        |
-| 🧹 Orphan Cleanup           | ✅ Done | Frontend triggers deletion of results with missing job/applicant links   |
-| 🧾 Interview Question UX    | ✅ Done | Automatically generated, role-based, and copied with one click           |
+- Upload and parse resumes (PDF/TXT)
+- Create, edit, and delete job postings
+- **AI-powered resume screening** (matches resumes to jobs)
+- Auto-generated interview questions based on role fit
+- View, copy, and paginate AI-generated results
+- Debounced search and memoized rendering for performance
+- Role-based access control (`admin` vs `user`)
+- Protected routes and authentication
+- "Forgot Password" flow using **Resend API**
+- Clean up orphaned results from deleted jobs or resumes
+- **Collapsible Sidebar** with Dark/Light theme toggle
+- Settings dropdown in header with user email + logout
 
 ---
 
-## 🔧 Recent Fixes & 🧭 UI Enhancements
+## 📦 Feature Progress
+
+| Module                | Status  | Description                                                      |
+| --------------------- | ------- | ---------------------------------------------------------------- |
+| 🧑‍💼 Resume Upload      | ✅ Done | Resume upload via Multer + `pdf-parse`                           |
+| 💼 Job Management     | ✅ Done | Full CRUD with inline edit/delete                                |
+| 🧠 AI Screening       | ✅ Done | Resume-to-job matching with insights and scores                  |
+| 📊 Screening Viewer   | ✅ Done | Displays results with pagination, copy-to-clipboard, etc.        |
+| 🔐 Authentication     | ✅ Done | Role-based sign-up/login + route protection                      |
+| 🧪 Unit/API Testing   | ✅ Done | Jest + RTL + mocked Zustand store for components like `JobList`  |
+| 🧹 Orphan Cleanup     | ✅ Done | Removes results with missing job or applicant                    |
+| 🧾 Interview Q UX     | ✅ Done | Generates role-specific questions, easy to copy/share            |
+| 📚 Sidebar Navigation | ✅ Done | Left sidebar with active tab highlight, tooltips, and animations |
+| ⚙️ Header Settings    | ✅ Done | Dropdown for user email and logout icon                          |
 
 ---
 
-### - 📚 Sidebar Menu (Collapsible) Navigation (July 8, 2025 )
+## 🎨 Recent UI/UX Enhancements
 
-- Introduced a **collapsible sidebar menu** for better navigation and responsiveness.
-- Sidebar supports:
-  - Collapsing and expanding with smooth animation
-  - Tab highlighting for active routes
-  - Icons alongside labels
-  - Tooltip on hover when collapsed
-- Adjusts layout dynamically so the header floats above, and the main content resizes accordingly.
-- **Implementation Time:** ~1.5 hours
+### 🗓️ July 9, 2025 – Dark/Light Theme + Sidebar
 
----
+- ✅ **Sidebar**: Collapsible, animated, tooltipped, and role-aware.
+- ✅ **Theme Toggle**: Toggle between dark and light themes; persisted in `localStorage`.
+- ✅ **Header Settings**: Gear icon dropdown for user info and logout.
+- ✅ **Fixed Styling Conflicts**: Removed hardcoded dark colors in `index.css`, making Tailwind theming dynamic.
 
-### - ⚙️ Added Settings Dropdown in Header (July 8, 2025)
+### 🗓️ June 28 – July 2, 2025 – Redirect Bug Fix
 
-- **Goal:** Improve UX by allowing users to view their email and logout easily
-- **What’s New:**
-  - ⚙️ Gear icon added to top-right of the header
-  - Clicking it reveals a dropdown showing the logged-in user's email
-  - Includes a "Logout" button inside the dropdown
-- **Implementation Time:** ~2 hours
-- **Built With:** Zustand, TailwindCSS, `@heroicons/react`, and click-outside detection
+- ❌ **Issue**: Confusing navigation after SignUp/SignIn due to Zustand store hydration delays.
+- ✅ **Fix**: Delayed redirection until the store is hydrated; fixed root path logic.
 
 ---
 
-### - 🛠️ Fixed Path Collision Redirection Bug (June 28 – July 2, 2025)
+## 🧪 Testing Strategy
 
-- **Issue:** After sign-up, the app redirected inconsistently — paths like `/signin` and `/results` flickered and conflicted, causing UI to render blank or partially.
-- **Root Cause:** Auth-based redirect logic and Zustand hydration timing were conflicting with React Router’s rendering flow.
-- **Fix Duration:** ~5 days of 2-hour sessions
-- **Solution Highlights:**
-  - Refactored `useEffect` logic to properly handle routing after hydration
-  - Ensured redirects only happen once Zustand store is fully hydrated
-  - Used a fallback `*` route to catch undefined paths
-
----
-
-## 🔬 Testing Strategy
-
-🧪 **Unit Tested:** `JobList` Component
-
-- Zustand Store mocked
-- Axios calls stubbed
-- Jest + RTL used for UI logic and state tests
-
-### ✅ Covered Test Cases:
+### ✅ Covered Scenarios
 
 - No jobs available (empty state)
-- Job list rendered with mock data
-- Edit/save flow
-- Cancel edit mode
-- Delete job and confirm store update
+- Rendering list with mock data
+- Edit/save/cancel flow
+- Delete confirmation with store updates
 
-### 🧪 Run Tests
+### 🔍 Technologies
+
+- Jest
+- React Testing Library
+- Mocked Zustand store
+- Stubbed Axios calls
 
 ```bash
 npm run test
@@ -130,49 +109,36 @@ npm run test
 npm run test:watch
 ```
 
----
+### 🔑 Authentication & Email Flow
 
-## 🔑 Authentication & Email Flow
+    ✉️ Forgot Password: Integrated with Resend API
 
-### 🔒 Forgot Password via Resend API
+    🛠️ Demo mode: Only sends to developer inbox (onboarding@resend.dev)
 
-- Current Mode: **Sandboxed** to a verified developer email
-- Limit: Emails can only be sent to developer inbox (`onboarding@resend.dev`)
-- Demo-Ready: Works fully in deployed environments (Vercel + Render)
-- Future-Ready: Easily upgradable with custom domain for all-user email access
-
-> **ℹ️ Note:** This is a conscious trade-off to demonstrate email functionality without requiring a domain purchase.
-
----
-
-## 🖼️ Screenshots
-
-> _Add screenshots after deployment to production_
-
-```md
-![Home Page](screenshots/home.png)
-![Screening Results](screenshots/screening.png)
-```
-
----
+    🌐 Ready for Production: Easily upgradable with custom domain integration
 
 ## 🧠 Project Summary
 
-SmartHire demonstrates strong capabilities in:
+    SmartHire demonstrates real-world full-stack capabilities under tight constraints.
 
-- Full-stack MERN development
-- AI integration with external APIs (OpenRouter)
-- Secure and modular authentication flow
-- File handling and dynamic resume parsing
-- Thoughtful UI/UX with search, pagination, and feedback loops
-- Clean code, modular routing, and well-commented components
+    Clean modular architecture
 
----
+    Integration with real AI APIs (OpenRouter)
 
-## 📢 End Notes
+    Secure, role-based user flows
 
-> "SmartHire reflects real-world application design under time constraints (3–4 hours/day for 18 days). The development flow balances innovation with practical MVP delivery."
+    Thoughtful UI/UX with modern Tailwind design
 
-Want to collaborate, improve, or integrate? Feel free to fork or get in touch!
+    Deployment-ready and demo-ready
+
+### 📸 Screenshots (to be added)
+
+    Home Page
+
+    Screening Results
+
+## 🤝 Want to Contribute or Collaborate?
+
+Fork it, improve it, or reach out!
 
 ---

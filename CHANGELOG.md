@@ -1,150 +1,120 @@
-## 📅 SmartHire Project Commit History
+## 📅 SmartHire Project Changelog
 
 > 🎯 Project Duration: **May 27, 2025 – June 20, 2025**
->
-> > ⚙️🔧🛠️ TroubleShooting and New Features: **June 28, 2025 – Till Date**
+> ⚙️ Post-MVP Development & Troubleshooting: **June 28, 2025 – Till Date**
 
 ---
 
 ## [1.2.0] - 2025-07-06
 
-### Added
+### ✨ 2025-07-09 - Collapsible Sidebar & Theme Improvements
 
-- Collapsible sidebar menu for tab navigation
-  - Animated expand/collapse behavior
-  - Hover tooltips in collapsed state
-  - Full-width buttons for cleaner layout
-- Sidebar layout adjusts with floating header
+- **Collapsible Sidebar with Dark/Light Theme:**
+  - Built a left-side collapsible sidebar using TailwindCSS with integrated icons.
+  - Added animated toggle for collapse/expand, active tab highlighting, and hover tooltips when collapsed.
+  - Implemented a dark/light mode switch (🌙 / ☀️), with theme preference persisted in `localStorage`.
+  - Utilized `clsx` and `tailwind-merge` for clean conditional styling.
+- **Theme Styling Fixes:**
+  - Resolved conflicting dark/light colors in buttons, form input fields, and backgrounds.
+  - Addressed Tailwind's default button background-color and text-color overrides from `index.css` by commenting out the problematic `background-color` for button elements.
+  - Cleaned up input styles for proper border and text color across both themes.
 
-### Changed
+### ✨ 2025-07-08 - Sidebar Menu & Settings Dropdown
 
-- Navigation was previously horizontal; replaced with vertical sidebar for better usability and space efficiency.
+- `feat`: Added Collapsible sidebar menu for tab navigation.
+- `ui`: Implemented animated expand/collapse behavior, hover tooltips in collapsed state, and full-width buttons for cleaner layout.
+- `refactor`: Adjusted sidebar layout to integrate seamlessly with the floating header.
+- `changed`: Replaced previous horizontal navigation with a vertical sidebar for improved usability and space efficiency.
+- `feat`: Added Settings dropdown with gear icon to header (displays user email + logout option).
+- `ui`: Applied Tailwind styling and implemented click-outside dropdown logic with conditional rendering.
 
-### 🟩 **July 8, 2025 – Added 📚 Sidebar Menu (Collapsible)**
+### 🐛 2025-06-28 to 2025-07-02 - Path Collision & Redirection Bug Fix
 
-    ✅ `feat: Added Collapsible sidebar menu for tab navigation`
-    ✅ `ui: Animated expand/collapse behavior + Hover tooltips in collapsed state + Full-width buttons for cleaner layout`
-    ✅ `refactor: Sidebar layout adjusts with floating header`
-    ✅ `changed: Navigation was previously horizontal; replaced with vertical sidebar for better usability and space efficiency.`
-
----
-
-### 🟩 **July 8, 2025 – ⚙️ Added Settings Dropdown in Header**
-
-    ✅ `feat: Added Settings dropdown with gear icon to header (shows email + logout)`
-    ✅ `ui: Tailwind styling + click-outside dropdown logic with conditional rendering`
-
----
-
-### 🟩 **June 28 - July 2, 2025 – 🛠 Fixed Path Collision Redirection Bug**
-
-    ✅ `fix: Zustand hydration issue affecting initial route rendering`
-    ✅ `fix: Path collision bug after SignIn/SignUp causing blank screens`
-    ✅ `refactor: Simplified protected route and app-level redirect logic`
-    ✅ `test: Verified role-based access and routing works post-hydration`
+- `fix`: Resolved Zustand hydration issue affecting initial route rendering.
+- `fix`: Fixed path collision bug after SignIn/SignUp that caused blank screens and navigation throttling.
+- `refactor`: Simplified protected route and app-level redirect logic for robustness.
+- `test`: Verified role-based access and routing functionality post-hydration.
 
 ---
 
-### 🟩 **June 20, 2025 – Project Finalization**
+### 🚀 2025-06-20 - Project Finalization & Cleanup
 
-- ✅ `feat: Implement role-based tab visibility in App.tsx`
-- ✅ `refactor: Modularize tab rendering logic for better maintainability`
-- ✅ `feat: Auto-delete orphaned screening results before frontend load`
-- ✅ `docs: Professional README.md polish`
-- ✅ `fix: Resend API domain limitation clarified – sandbox vs. custom domain`
+- `feat`: Implemented role-based tab visibility in `App.tsx`.
+- `refactor`: Modularized tab rendering logic for better maintainability.
+- `feat`: Added auto-deletion of orphaned screening results before frontend load.
+- `docs`: Professional polish of the `README.md` file.
+- `fix`: Clarified Resend API domain limitation (sandbox vs. custom domain).
 
----
+### ✨ 2025-06-19 - Interview Features & PDF Fix
 
-### 🟩 **June 19, 2025**
+- `feat`: Implemented display of interview questions with copy-to-clipboard functionality and First/Last pagination.
+- `fix`: Patched `pdf-parse` import bug using `patch-package`.
+- `chore`: Applied temporary fix for `pdf-parse` ENOENT error.
+- `docs`: Updated `README` with Resend sandbox notes and enhancements.
 
-- ✅ `feat: Show interview questions + copy-to-clipboard + First/Last pagination`
-- ✅ `fix: Patch pdf-parse import bug using patch-package`
-- ✅ `chore: Temporary fix for pdf-parse ENOENT error`
-- ✅ `docs: Update README with Resend sandbox notes and enhancements`
+### ✨ 2025-06-17 to 2025-06-18 - Full Password Reset Flow
 
----
+- `feat`: Developed complete password reset flow with Resend (API + Frontend).
+- `fix`: Handled `ForgotPassword` and `ResetPassword` route handling, including Resend verification.
+- `test`: Postman-tested all authentication-related endpoints (forgot/reset).
 
-### 🟩 **June 17–18, 2025**
+### ✨ 2025-06-14 to 2025-06-16 - Frontend & Backend Authentication
 
-- ✅ `feat: Full password reset flow with Resend (API + Frontend)`
-- ✅ `fix: ForgotPassword + ResetPassword route handling + Resend verification`
-- ✅ `test: Postman-tested all auth-related endpoints (forgot/reset)`
+- `feat`: Implemented frontend authentication (SignIn/SignUp), protected routes, and Zustand store for user/admin roles.
+- `feat`: Developed middleware and backend authentication with token-based role control.
+- `feat`: Completed frontend flow for forgot password (form + routing).
+- `fix`: Resolved authentication routing bug when no token was present.
+- `test`: Tested authentication flow using Postman.
 
----
+### 🧪 2025-06-12 to 2025-06-13 - Testing, Forms & Data Management
 
-### 🟩 **June 14–16, 2025**
+- `test`: Conducted unit testing using Jest + React Testing Library (RTL) for `JobList`.
+- `feat`: Integrated React Hook Form with Yup validation.
+- `feat`: Implemented debounced job search functionality and pagination.
+- `feat`: Developed backend function to delete orphaned screening results.
+- `docs`: Updated `README` with feature list and AI agent details.
 
-- ✅ `feat: Frontend Auth — SignIn/SignUp, Protected Routes, Zustand store (user/admin)`
-- ✅ `feat: Middleware & Backend Auth – Token-based role control`
-- ✅ `feat: Forgot password frontend flow complete (form + routing)`
-- ✅ `fix: Auth routing bug when no token present`
-- ✅ `test: Auth flow tested using Postman`
+### ✨ 2025-06-09 to 2025-06-11 - AI Screening & Results Viewer
 
----
+- `feat`: Implemented AI screening via Mistral on OpenRouter.
+- `feat`: Enabled storing screening results and viewing AI feedback on the frontend.
+- `fix`: Centralized Zustand store for Jobs and Applicants.
+- `fix`: Resolved `ResultsViewer` fetch crash (handled 304 status).
+- `feat`: Added screening results viewer with pagination.
 
-### 🟩 **June 12–13, 2025**
+### ⚙️ 2025-06-04 - Core Models & Routes
 
-- ✅ `test: Unit testing using Jest + RTL for JobList`
-- ✅ `feat: React Hook Form + Yup validation integrated`
-- ✅ `feat: Debounced job search and pagination`
-- ✅ `feat: Delete orphaned screening results backend function`
-- ✅ `docs: README updated with feature list, AI agent details`
+- `feat`: Developed Job model, controller, and routes.
+- `feat`: Developed ScreeningResult model, controller, and routes.
+- `fix`: Updated `App.ts` route imports for consistency.
 
----
+### ✨ 2025-06-03 - Resume PDF Upload
 
-### 🟩 **June 9–11, 2025**
+- `feat`: Implemented Resume PDF upload with size limit and parsing to MongoDB.
 
-- ✅ `feat: AI screening via Mistral on OpenRouter`
-- ✅ `feat: Store screening results + view AI feedback on frontend`
-- ✅ `fix: Zustand store centralization (Jobs + Applicants)`
-- ✅ `fix: ResultsViewer fetch crash (304 status handled)`
-- ✅ `feat: Add screening results viewer with pagination`
+### 🐛 2025-05-30 - Applicant Upload Fixes
 
----
+- `fix`: Corrected Applicant resume upload via Multer – added support for PDF/TXT.
+- `test`: Tested resume insert and parse via Postman.
 
-### 🟩 **June 4, 2025**
+### ✨ 2025-05-29 - Frontend Resume Form
 
-- ✅ `feat: Job model, controller, routes`
-- ✅ `feat: ScreeningResult model, controller, routes`
-- ✅ `fix: App.ts route imports updated`
+- `feat`: Created and connected frontend resume upload form.
+- `chore`: Cleaned root directory, removed `.DS_Store`, and updated `.gitignore`.
 
----
+### ⚙️ 2025-05-28 - Initial Server & Applicant Setup
 
-### 🟩 **June 3, 2025**
+- `feat`: Initial Express server setup.
+- `feat`: Applicant model, controller, routes, and database setup.
+- `test`: HTTP tested via Postman (CRUD for Applicants).
 
-- ✅ `feat: Resume PDF upload working with size limit + parsing to MongoDB`
+### 🚀 2025-05-27 - Project Kickoff
 
----
-
-### 🟩 **May 30, 2025**
-
-- ✅ `fix: Applicant resume upload via Multer — added support for PDF/TXT`
-- ✅ `test: Resume insert and parse tested via Postman`
-
----
-
-### 🟩 **May 29, 2025**
-
-- ✅ `feat: Frontend resume upload form created and connected`
-- ✅ `chore: Clean root directory, remove .DS_Store, update .gitignore`
+- `init`: SmartHire project initialized (MERN + AI Resume Screener).
 
 ---
 
-### 🟩 **May 28, 2025**
-
-- ✅ `feat: Express server initial setup`
-- ✅ `feat: Applicant model/controller/routes/db setup`
-- ✅ `test: HTTP tested via Postman (CRUD for Applicants)`
-
----
-
-### 🟩 **May 27, 2025 – 🚀 Project Kickoff**
-
-- ✅ `init: SmartHire project initialized (MERN + AI Resume Screener)`
-
----
-
-## ✅ Status
+## ✅ Project Status
 
 🎯 **MVP complete. Ready for deployment.**
-Next: Deploy to **Vercel (frontend)** and **Render (backend)**. Then plan scaling and advanced features (e.g., analytics, multi-role admin views, or LLM switching).
+Next: Deploy to **Vercel (frontend)** and **Render (backend)**. Planning scaling and advanced features (e.g., analytics, multi-role admin views, or LLM switching).

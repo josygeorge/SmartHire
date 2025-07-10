@@ -76,80 +76,80 @@ const ResumeUploadForm: React.FC = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className='w-full mx-auto p-6 bg-white text-white rounded shadow space-y-4'
-    >
-      <div>
-        <label className='block font-semibold mb-1' htmlFor='name'>
-          Name
-        </label>
-        <input
-          {...register('name')}
-          id='name'
-          type='text'
-          className={`w-full border p-2 rounded ${
-            errors.name ? 'border-red-500' : 'border-gray-300'
-          }`}
-          placeholder="Applicant's full name"
-        />
-        {errors.name && (
-          <p className='text-red-500 text-sm mt-1'>{errors.name.message}</p>
-        )}
-      </div>
+    <div className='w-full max-w-2xl mx-auto bg-gray-100 text-gray-800 shadow-lg rounded-2xl p-6 my-6'>
+      <h3 className='text-2xl font-semibold mb-4'>Upload a Resume</h3>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
+        <div>
+          {/* <label className='block font-semibold mb-1' htmlFor='name'>
+            Name
+          </label> */}
+          <input
+            {...register('name')}
+            id='name'
+            type='text'
+            className={`w-full border p-2 rounded ${
+              errors.name ? 'border-red-500' : 'border-gray-300'
+            }`}
+            placeholder="Applicant's full name"
+          />
+          {errors.name && (
+            <p className='text-red-500 text-sm mt-1'>{errors.name.message}</p>
+          )}
+        </div>
 
-      <div>
-        <label className='block font-semibold mb-1' htmlFor='email'>
-          Email
-        </label>
-        <input
-          {...register('email')}
-          id='email'
-          type='email'
-          className={`w-full border p-2 rounded ${
-            errors.email ? 'border-red-500' : 'border-gray-300'
-          }`}
-          placeholder="Applicant's email"
-        />
-        {errors.email && (
-          <p className='text-red-500 text-sm mt-1'>{errors.email.message}</p>
-        )}
-      </div>
+        <div>
+          {/* <label className='block font-semibold mb-1' htmlFor='email'>
+            Email
+          </label> */}
+          <input
+            {...register('email')}
+            id='email'
+            type='email'
+            className={`w-full border p-2 rounded ${
+              errors.email ? 'border-red-500' : 'border-gray-300'
+            }`}
+            placeholder="Applicant's email"
+          />
+          {errors.email && (
+            <p className='text-red-500 text-sm mt-1'>{errors.email.message}</p>
+          )}
+        </div>
 
-      <div>
-        <label className='block font-semibold mb-1' htmlFor='resume'>
-          Resume (TXT or PDF)
-        </label>
-        <input
-          {...register('resume')}
-          ref={(e) => {
-            register('resume').ref(e);
-            fileInputRef.current = e; // 👈 Assign to ref
-          }} // Attach ref to input
-          id='resume'
-          type='file'
-          accept='.txt,.pdf'
-          className={`w-full text-gray-600 border p-2 rounded ${
-            errors.resume ? 'border-red-500' : 'border-gray-300'
-          }`}
-        />
-        <small className='text-xs italic text-cyan-800'>
-          (*Max 2MB for PDFs; TXT files recommended for faster processing)
-        </small>
+        <div>
+          {/* <label className='block font-semibold mb-1' htmlFor='resume'>
+            Resume (TXT or PDF)
+          </label> */}
+          <input
+            {...register('resume')}
+            ref={(e) => {
+              register('resume').ref(e);
+              fileInputRef.current = e; // 👈 Assign to ref
+            }} // Attach ref to input
+            id='resume'
+            type='file'
+            accept='.txt,.pdf'
+            className={`w-full text-sm text-gray-400 border p-2 rounded ${
+              errors.resume ? 'border-red-500' : 'border-gray-300'
+            }`}
+          />
+          <small className='text-xs italic text-cyan-800'>
+            (*Max 2MB for PDFs; TXT files recommended for faster processing)
+          </small>
 
-        {errors.resume && (
-          <p className='text-red-500 text-sm mt-1'>{errors.resume.message}</p>
-        )}
-      </div>
+          {errors.resume && (
+            <p className='text-red-500 text-sm mt-1'>{errors.resume.message}</p>
+          )}
+        </div>
 
-      <button
-        type='submit'
-        disabled={isSubmitting}
-        className=' bg-blue-600 text-white p-3 rounded hover:bg-blue-500 transition disabled:opacity-50'
-      >
-        {isSubmitting ? 'Uploading...' : 'Upload Resume'}
-      </button>
-    </form>
+        <button
+          type='submit'
+          disabled={isSubmitting}
+          className=' bg-blue-600 text-white p-3 rounded hover:bg-blue-500 transition disabled:opacity-50'
+        >
+          {isSubmitting ? 'Uploading...' : 'Upload Resume'}
+        </button>
+      </form>
+    </div>
   );
 };
 
