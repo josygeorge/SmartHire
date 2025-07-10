@@ -13,17 +13,17 @@ import JobUploadForm from './components/Upload/JobUploadForm';
 import ResultsViewer from './components/ResultsViewer';
 import ApplicantList from './components/List/ApplicantList';
 import JobList from './components/List/JobList';
-import SignIn from './components/Auth/pages/SignIn';
-import SignUp from './components/Auth/pages/SignUp';
-import ForgotPassword from './components/Auth/pages/ForgotPassword';
-import ResetPassword from './components/Auth/pages/ResetPassword';
+import SignIn from './components/Auth/SignIn';
+import SignUp from './components/Auth/SignUp';
+import ForgotPassword from './components/Auth/ForgotPassword';
+import ResetPassword from './components/Auth/ResetPassword';
 
 import { ProtectedRoute } from './components/Auth/ProtectedRoute';
 import { useAuthStore } from './store/useAuthStore';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SettingsDropDown from './components/Header/SettingsDropDown';
-import Sidebar from './components/MainMenu/SideBar';
+import Sidebar from './components/Sidebar/Sidebar';
 
 export default function App() {
   const navigate = useNavigate(); // Use navigate to programmatically change routes

@@ -1,7 +1,7 @@
 import { useAuthStore } from '../../store/useAuthStore';
 import { useEffect, useState, useRef } from 'react';
 import { Cog6ToothIcon } from '@heroicons/react/16/solid';
-import LogoutButton from './LogoutButton';
+import LogoutButton from '../Auth/LogoutButton';
 
 export default function SettingsDropDown() {
   const [isOpen, setIsOpen] = useState(false);

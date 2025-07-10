@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuthStore } from '../../../store/useAuthStore';
+import { useAuthStore } from '../../store/useAuthStore';
 
 export default function Signup() {
   const [form, setForm] = useState({

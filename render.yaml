@@ -1,0 +1,18 @@
+# render.yaml
+services:
+  - type: web
+    name: smarthire-api
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        value: <your-actual-mongo-uri>
+      - key: JWT_SECRET
+        value: <your-actual-jwt-secret>
+      - key: RESEND_API_KEY
+        value: <your-resend-api-key-if-used>

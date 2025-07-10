@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuthStore } from '../../../store/useAuthStore';
-import { BASE_URL } from '../../../config/config';
+import { useAuthStore } from '../../store/useAuthStore';
+import { BASE_URL } from '../../config/config';
 
 export default function SignIn() {
   const [form, setForm] = useState({ email: '', password: '' });

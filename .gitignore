@@ -5,6 +5,8 @@ node_modules/
 dist/
 build/
 
+
+
 # Logs
 logs
 *.log
@@ -14,4 +16,7 @@ npm-debug.log*
 .DS_Store
 .vscode/
 .idea/
+
+# Backup folder and files
+backup/
 *.bck-dev
