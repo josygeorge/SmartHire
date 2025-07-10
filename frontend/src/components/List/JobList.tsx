@@ -4,6 +4,7 @@ import { useJobStore } from '../../store/useJobStore';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
 import { useAuthStore } from '../../store/useAuthStore';
+import { BASE_URL } from '../../config/config';
 
 export default function JobList() {
   const jobs = useJobStore((state) => state.jobs);
@@ -29,7 +30,7 @@ export default function JobList() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get('/api/jobs');
+        const res = await axios.get(`${BASE_URL}/api/jobs`);
         setJobs(res.data); // Populate Zustand store
       } catch (err) {
         console.error('Error fetching jobs:', err);

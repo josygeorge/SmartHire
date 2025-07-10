@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuthStore } from '../../store/useAuthStore';
+import { BASE_URL } from '../../config/config';
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -18,7 +19,7 @@ export default function Signup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/register', form);
+      const res = await axios.post(`${BASE_URL}/api/auth/register`, form);
       const { token, user } = res.data;
       setAuth(token, user.role, user.email);
       setTimeout(() => navigate('/results'), 1000); // optional delay for UX

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../../config/config';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ export default function ForgotPassword() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/auth/forgot-password', { email });
+      await axios.post(`${BASE_URL}/api/auth/forgot-password`, { email });
       toast.success('Reset link sent. Please check your email.');
       setEmail('');
     } catch (err: any) {

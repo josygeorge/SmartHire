@@ -5,6 +5,7 @@
     Press a “Run AI Screening” button
  */
 import { useEffect, useState } from 'react';
+import { BASE_URL } from '../../config/config';
 
 interface Applicant {
   _id: string;
@@ -25,11 +26,11 @@ export default function ApplicantList() {
   );
 
   useEffect(() => {
-    fetch('/api/applicants')
+    fetch(`${BASE_URL}/api/applicants`)
       .then((res) => res.json())
       .then(setApplicants);
 
-    fetch('/api/jobs')
+    fetch(`${BASE_URL}/api/jobs`)
       .then((res) => res.json())
       .then(setJobs);
   }, []);
@@ -42,7 +43,7 @@ export default function ApplicantList() {
     }
 
     try {
-      const res = await fetch('/api/screening-results/run', {
+      const res = await fetch(`${BASE_URL}/api/screening-results/run`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ applicantId, jobId }),

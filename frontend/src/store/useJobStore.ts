@@ -16,11 +16,6 @@ interface JobStore {
 }
 export const useJobStore = create<JobStore>((set) => ({
   jobs: [],
-  /* setJobs: (jobs) => set({ jobs }),
-  addJob: (job) =>
-    set((state) => ({
-      jobs: [job, ...state.jobs], // Unshift to show latest first
-    })), */
   setJobs: (data: any[]) =>
     set({
       jobs: data.map((job) => ({

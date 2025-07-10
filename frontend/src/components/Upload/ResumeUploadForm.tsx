@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
 import { useApplicantStore } from '../../store/useApplicantStore';
+import { BASE_URL } from '../../config/config';
 
 interface FormInputs {
   name: string;
@@ -61,9 +62,13 @@ const ResumeUploadForm: React.FC = () => {
     formData.append('email', data.email);
     formData.append('resume', resumeFiles[0]);
     try {
-      const response = await axios.post('/api/applicants', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const response = await axios.post(
+        `${BASE_URL}/api/applicants`,
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
+      );
 
       addApplicant(response.data.applicant);
       alert('Resume uploaded successfully!');

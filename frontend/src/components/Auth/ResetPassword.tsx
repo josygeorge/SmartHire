@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { BASE_URL } from '../../config/config';
 
 export default function ResetPassword() {
   const [password, setPassword] = useState('');
@@ -19,7 +20,10 @@ export default function ResetPassword() {
     setLoading(true);
 
     try {
-      await axios.post('/api/auth/reset-password', { token, password });
+      await axios.post(`${BASE_URL}/api/auth/reset-password`, {
+        token,
+        password,
+      });
       toast.success('Password reset successful. Please sign in.');
       navigate('/signin');
     } catch (err: any) {

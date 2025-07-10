@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import useJobStore from '../../store/useJobStore';
 import axios from 'axios';
 import { useState } from 'react';
+import { BASE_URL } from '../../config/config';
 
 // Define form schema with Yup
 const jobSchema = yup.object({
@@ -43,7 +44,7 @@ export default function JobUploadForm() {
   const onSubmit = async (data: JobFormValues) => {
     setLoading(true);
     try {
-      const response = await axios.post('/api/jobs', {
+      const response = await axios.post(`${BASE_URL}/api/jobs`, {
         ...data,
         skills: data.skills.split(',').map((s) => s.trim()),
       });
