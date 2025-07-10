@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "ESNext",
+    "lib": ["esnext"],
     "moduleResolution": "node",
      "outDir": "dist",
     "rootDir": "src",
@@ -11,6 +12,7 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true, 
+    "types": ["node"],
     "typeRoots": ["./node_modules/@types", "./src/types"]
 
   },
