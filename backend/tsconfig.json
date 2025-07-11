@@ -35,5 +35,6 @@
   // it might be because it's in 'src' and treated as a module.
   // A common workaround is to move global .d.ts files outside 'src'
   // or ensure they don't have top-level imports/exports.
-  "include": ["src"]
+  "include": ["src"],
+  "files": ["./src/global.d.ts"] // Add this if you create a global.d.ts
 }
