@@ -2,9 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "ESNext",
-    // **FIX:** Added 'dom' to 'lib' for global types like 'console'.
-    // 'esnext' covers many modern features, but 'dom' is often needed for console.
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom"], // Added 'dom' for console and other common globals
     "moduleResolution": "node",
     "outDir": "dist",
     "rootDir": "src",
@@ -14,7 +12,7 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    // **FIX:** Explicitly list ALL @types packages from your devDependencies.
+    // Explicitly list ALL @types packages from your devDependencies.
     // This leaves no ambiguity for TypeScript.
     "types": [
       "node",
@@ -25,16 +23,17 @@
       "nodemailer",
       "xmldom"
     ],
-    // Keep typeRoots to point to where @types packages are installed.
-    // If you have other custom global .d.ts files, they should be
-    // included via 'include' or 'files' if not in node_modules/@types.
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    // **CRITICAL:** Define where TypeScript should look for type definitions.
+    // This ensures it finds both installed @types and your custom global declarations.
+    "typeRoots": [
+      "./node_modules/@types", // Standard path for installed @types packages
+      "./src/types"           // Path for your custom declaration files (like custom-express.d.ts)
+    ]
   },
-  // Ensure 'src' is included for your source files.
-  // If src/types/express/index.d.ts is causing TS2306,
-  // it might be because it's in 'src' and treated as a module.
-  // A common workaround is to move global .d.ts files outside 'src'
-  // or ensure they don't have top-level imports/exports.
-  "include": ["src"],
-  "files": ["./src/global.d.ts"] // Add this if you create a global.d.ts
+  "include": ["src"] // This tells TypeScript to compile all .ts files in 'src'
+  // If you have a global.d.ts or custom-express.d.ts that is *not* a module
+  // (i.e., no top-level imports/exports), placing it in src/types and
+  // having "./src/types" in typeRoots should make it work.
+  // If it still gives TS2306, the file might contain an implicit module structure
+  // or be compiled as a regular source file.
 }
