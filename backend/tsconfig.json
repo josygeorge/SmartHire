@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2020", // Changed to a slightly newer target for broader compatibility
     "module": "ESNext",
-    "lib": ["esnext", "dom"], // Added 'dom' for console and other common globals
+    // Explicitly list all standard libs you might need. 'dom' is for console, 'es2020' for modern features.
+    "lib": ["es2020", "dom"],
     "moduleResolution": "node",
     "outDir": "dist",
     "rootDir": "src",
@@ -12,8 +13,8 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    // Explicitly list ALL @types packages from your devDependencies.
-    // This leaves no ambiguity for TypeScript.
+    // **CRITICAL:** Explicitly list ALL @types packages from your devDependencies.
+    // This is the most direct way to tell TypeScript which types to include.
     "types": [
       "node",
       "express",
@@ -23,17 +24,12 @@
       "nodemailer",
       "xmldom"
     ],
-    // **CRITICAL:** Define where TypeScript should look for type definitions.
-    // This ensures it finds both installed @types and your custom global declarations.
+    // **CRITICAL:** Define the root directories where TypeScript should look for type definition files.
+    // This order prioritizes your custom types, then the standard node_modules/@types.
     "typeRoots": [
-      "./node_modules/@types", // Standard path for installed @types packages
-      "./src/types"           // Path for your custom declaration files (like custom-express.d.ts)
+      "./src/types",           // Your custom declaration files (e.g., custom-express.d.ts)
+      "./node_modules/@types"  // Standard path for installed @types packages
     ]
   },
-  "include": ["src"] // This tells TypeScript to compile all .ts files in 'src'
-  // If you have a global.d.ts or custom-express.d.ts that is *not* a module
-  // (i.e., no top-level imports/exports), placing it in src/types and
-  // having "./src/types" in typeRoots should make it work.
-  // If it still gives TS2306, the file might contain an implicit module structure
-  // or be compiled as a regular source file.
+  "include": ["src"] // This tells TypeScript to compile all .ts files within the 'src' directory.
 }

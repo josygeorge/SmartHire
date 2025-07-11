@@ -1,7 +1,7 @@
 import { DOMParser } from 'xmldom';
 (global as any).DOMParser = DOMParser; // <-- Add this at the very top
 
-import app from './app';
+import app from './app.js';
 import { connectDB } from './utils/db';
 
 const PORT = process.env.PORT || 5050;
