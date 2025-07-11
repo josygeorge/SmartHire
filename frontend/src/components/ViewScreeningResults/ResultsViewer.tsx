@@ -3,7 +3,8 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BASE_URL } from '../config/config';
+import { BASE_URL } from '../../config/config';
+import InterviewQuestions from './InterviewQuestions';
 
 interface ScreeningResult {
   _id: string;
@@ -86,8 +87,6 @@ export default function ResultsViewer() {
     fetchResults();
   }, []);
 
-  // console.log('Results fetched:', results); // Debugging log to check fetched results
-
   if (loading) return <p className='text-center mt-6'>Loading results...</p>;
   if (error) {
     return (
@@ -110,7 +109,6 @@ export default function ResultsViewer() {
       </p>
     );
   }
-  //console.log('Rendering Results:', results); // Debugging log to check results
 
   // === Render Results ===
   return (
@@ -173,8 +171,7 @@ export default function ResultsViewer() {
           </div>
 
           {/* Interview Questions */}
-          <div className='mt-4 bg-gray-300 p-4 rounded-md border'>
-            {/* <div className='flex justify-between items-center'> */}
+          {/* <div className='mt-4 bg-gray-300 p-4 rounded-md border'>
             <div className='flex justify-between items-center'>
               <p className='font-semibold text-gray-800'>
                 Suggested Interview Questions
@@ -195,7 +192,8 @@ export default function ResultsViewer() {
                 <li key={i}>{q}</li>
               ))}
             </ul>
-          </div>
+          </div> */}
+          <InterviewQuestions res={res} />
         </div>
       ))}
 

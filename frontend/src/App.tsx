@@ -10,7 +10,7 @@ import {
 
 import ResumeUploadForm from './components/Upload/ResumeUploadForm';
 import JobUploadForm from './components/Upload/JobUploadForm';
-import ResultsViewer from './components/ResultsViewer';
+import ResultsViewer from './components/ViewScreeningResults/ResultsViewer';
 import ApplicantList from './components/List/ApplicantList';
 import JobList from './components/List/JobList';
 import SignIn from './components/Auth/SignIn';
