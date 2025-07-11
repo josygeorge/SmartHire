@@ -4,7 +4,7 @@ import {
   createApplicant,
   deleteApplicant,
 } from '../controllers/applicant.controller.js';
-import upload from '../middleware/multer';
+import upload from '../middleware/multer.js'; // Importing multer middleware
 
 const router = Router();
 
