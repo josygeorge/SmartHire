@@ -10,6 +10,8 @@ Built with scalability, modern UI/UX, and clean architecture in mind.
 
 - 🔗 **Frontend**: [smart-hire-rho.vercel.app](https://smart-hire-rho.vercel.app)
 - 🔗 **API**: [smarthire-api.onrender.com](https://smarthire-api.onrender.com)
+- 🌐 **Frontend:** <a href="https://smart-hire-rho.vercel.app" target="_blank" rel="noopener noreferrer">smart-hire-rho.vercel.app</a>
+- 🌐 **API:** <a href="https://smarthire-api.onrender.com" target="_blank" rel="noopener noreferrer">smarthire-api.onrender.com</a>
 - 🎥 **Demo Video**: _Coming soon_
 
 ---
