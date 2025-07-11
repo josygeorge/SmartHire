@@ -12,6 +12,7 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true, 
+    "types": ["node"],
     "typeRoots": ["./node_modules/@types", "./src/types"]
 
   },
