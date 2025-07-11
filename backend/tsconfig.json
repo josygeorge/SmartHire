@@ -2,19 +2,27 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "ESNext",
-    "lib": ["esnext"],
+    "lib": ["esnext"], // 'esnext' is generally sufficient for Node.js environments.
     "moduleResolution": "node",
-     "outDir": "dist",
+    "outDir": "dist",
     "rootDir": "src",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true, 
-    "types": ["node"],
+    "skipLibCheck": true,
+    // **IMPORTANT FIX:** Explicitly list all @types packages from your devDependencies
+    "types": [
+      "node",
+      "express",
+      "cors",
+      "jsonwebtoken",
+      "multer",
+      "nodemailer",
+      "xmldom"
+    ],
     "typeRoots": ["./node_modules/@types", "./src/types"]
-
   },
-  "include": ["src"],
+  "include": ["src"]
 }
