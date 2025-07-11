@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "ESNext",
-    "lib": ["esnext"], // 'esnext' is generally sufficient for Node.js environments.
+    // **FIX:** Added 'dom' to 'lib' for global types like 'console'.
+    // 'esnext' covers many modern features, but 'dom' is often needed for console.
+    "lib": ["esnext", "dom"],
     "moduleResolution": "node",
     "outDir": "dist",
     "rootDir": "src",
@@ -12,7 +14,8 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    // **IMPORTANT FIX:** Explicitly list all @types packages from your devDependencies
+    // **FIX:** Explicitly list ALL @types packages from your devDependencies.
+    // This leaves no ambiguity for TypeScript.
     "types": [
       "node",
       "express",
@@ -22,7 +25,15 @@
       "nodemailer",
       "xmldom"
     ],
+    // Keep typeRoots to point to where @types packages are installed.
+    // If you have other custom global .d.ts files, they should be
+    // included via 'include' or 'files' if not in node_modules/@types.
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
+  // Ensure 'src' is included for your source files.
+  // If src/types/express/index.d.ts is causing TS2306,
+  // it might be because it's in 'src' and treated as a module.
+  // A common workaround is to move global .d.ts files outside 'src'
+  // or ensure they don't have top-level imports/exports.
   "include": ["src"]
 }
