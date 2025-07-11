@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2020", // Changed to a slightly newer target for broader compatibility
+    "target": "ES2020",
     "module": "ESNext",
-    // Explicitly list all standard libs you might need. 'dom' is for console, 'es2020' for modern features.
     "lib": ["es2020", "dom"],
     "moduleResolution": "node",
     "outDir": "dist",
@@ -13,8 +12,6 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    // **CRITICAL:** Explicitly list ALL @types packages from your devDependencies.
-    // This is the most direct way to tell TypeScript which types to include.
     "types": [
       "node",
       "express",
@@ -24,12 +21,7 @@
       "nodemailer",
       "xmldom"
     ],
-    // **CRITICAL:** Define the root directories where TypeScript should look for type definition files.
-    // This order prioritizes your custom types, then the standard node_modules/@types.
-    "typeRoots": [
-      "./src/types",           // Your custom declaration files (e.g., custom-express.d.ts)
-      "./node_modules/@types"  // Standard path for installed @types packages
-    ]
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
-  "include": ["src"] // This tells TypeScript to compile all .ts files within the 'src' directory.
+  "include": ["src"]
 }
