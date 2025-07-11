@@ -1,7 +1,7 @@
 // Protected Routes for Admin vs User
 
 import { Router } from 'express';
-import { authenticate, authorizeAdmin } from '../middleware/authMiddleware';
+import { authenticate, authorizeAdmin } from '../middleware/authMiddleware.js';
 
 const router = Router();
 

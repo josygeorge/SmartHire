@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import applicantRoutes from './routes/applicant.routes';
-import jobRoutes from './routes/job.routes';
-import screeningResultRoutes from './routes/screeningResult.routes';
-import authRoutes from './routes/auth.routes'; // Importing the authentication routes
-import protectedRoutes from './routes/protected.routes'; // Importing the protected routes
+import applicantRoutes from './routes/applicant.routes.js';
+import jobRoutes from './routes/job.routes.js';
+import screeningResultRoutes from './routes/screeningResult.routes.js';
+import authRoutes from './routes/auth.routes.js'; // Importing the authentication routes
+import protectedRoutes from './routes/protected.routes.js'; // Importing the protected routes
 //import path from 'path';
 
 //dotenv.config({ path: path.resolve(__dirname, '../.env') });

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { User } from '../models/User.model';
+import { User } from '../models/User.model.js';
 import crypto from 'crypto';
 import * as bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { sendResetEmail } from '../utils/sendResetEmail';
+import { sendResetEmail } from '../utils/sendResetEmail.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecret';
 

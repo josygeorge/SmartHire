@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { ScreeningResult } from '../models/ScreeningResult.model';
-import { Applicant } from '../models/Applicant.model';
-import { Job } from '../models/Job.model';
+import { ScreeningResult } from '../models/ScreeningResult.model.js';
+import { Applicant } from '../models/Applicant.model.js';
+import { Job } from '../models/Job.model.js';
 // import fetch from 'node-fetch'; //
 import axios from 'axios'; // or axios
 

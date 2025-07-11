@@ -4,7 +4,7 @@ import {
   deleteOrphanedScreeningResults,
   getScreeningResults,
   runAIForScreeningResult,
-} from '../controllers/screeningResult.controller';
+} from '../controllers/screeningResult.controller.js';
 
 //const router = Router();
 const router: Router = Router();

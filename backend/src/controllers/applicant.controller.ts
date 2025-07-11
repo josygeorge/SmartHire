@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Applicant } from '../models/Applicant.model';
+import { Applicant } from '../models/Applicant.model.js';
 // import pdfParse from 'pdf-parse';
 
 // This type matches the shape Multer adds to Express.Request

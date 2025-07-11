@@ -3,7 +3,7 @@ import {
   getApplicants,
   createApplicant,
   deleteApplicant,
-} from '../controllers/applicant.controller';
+} from '../controllers/applicant.controller.js';
 import upload from '../middleware/multer';
 
 const router = Router();

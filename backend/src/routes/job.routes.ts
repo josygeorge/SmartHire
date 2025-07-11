@@ -4,7 +4,7 @@ import {
   getJobs,
   deleteJob,
   updateJob,
-} from '../controllers/job.controller';
+} from '../controllers/job.controller.js';
 
 const router = Router();
 router.post('/', createJob);
