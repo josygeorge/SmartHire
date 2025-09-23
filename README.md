@@ -41,7 +41,7 @@ It highlights how SmartHire evolved from setup to full-stack deployment over an 
 ## ✅ Features
 
 - Upload and parse resumes (PDF/TXT)
-- Create, edit, and delete job postings
+- Create, Edit, and Delete job postings
 - **AI-powered resume screening** (matches resumes to jobs)
 - Auto-generated interview questions based on role fit
 - View, copy, and paginate AI-generated results
